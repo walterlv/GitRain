@@ -3,13 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="64">
-    <Grid>
-        <ToggleButton Width="48" Height="48"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="100">
+    <Grid VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ToggleButton Grid.Row="0" Grid.Column="0" Width="48" Height="48" Margin="8 8 0 8"
+                      BorderThickness="0"
                       HorizontalAlignment="Left"
                       WindowChrome.IsHitTestVisibleInChrome="True"
-                      Background="{StaticResource Theme.Brush.Highlight1}">
+                      Background="{StaticResource Theme.Brush.Accent}">
         </ToggleButton>
-        
+
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <TextBlock FontSize="16" Margin="4 0" Text="GitRain"/>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -59,7 +59,7 @@
         <data:GitRepoCollectionEntry/>
     </UserControl.DataContext>
 
-    <Grid>
+    <Grid Margin="0 40 0 0">
         <ListBox WindowChrome.IsHitTestVisibleInChrome="True"
                  BorderThickness="0" Padding="0" Background="{x:Null}"
 		     	 ItemsSource="{Binding Repos}" SelectedIndex="0"

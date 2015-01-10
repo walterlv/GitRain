@@ -38,7 +38,7 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -48,7 +48,7 @@
 
             <ui:UserPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="0 -24 0 0"/>
             <ui:RepoListPanel x:Name="RepoListPanel" Grid.Row="2" Grid.Column="0"/>
-            <ui:GitRepoPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+            <ui:GitRepoPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
                          DataContext="{Binding SelectedRepo, Converter={StaticResource RepoDetailConverter}, ElementName=RepoListPanel}"/>
 
             <GridSplitter Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="4" Margin="0 -24 0 0"
