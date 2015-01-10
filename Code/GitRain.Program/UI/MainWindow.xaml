@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="clr-namespace:Cvte.GitRain.UI"
         xmlns:wc="clr-namespace:Cvte.GitRain.Windows.Controls"
-        Title="Git Rain" Width="960" Height="640"
+        Title="Git Rain" MinWidth="400" MinHeight="240" Width="960" Height="640"
         BorderBrush="{DynamicResource Theme.Brush.Accent}"
         SnapsToDevicePixels="True">
     <FrameworkElement.Resources>
@@ -25,28 +25,36 @@
         <WindowChrome CornerRadius="0" GlassFrameThickness="0 0 0 1"
                       UseAeroCaptionButtons="False" CaptionHeight="72"/>
     </WindowChrome.WindowChrome>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="80"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+
+        <wc:SystemButtons Grid.Row="0" Margin="0 -4 0 0" Panel.ZIndex="1"
+                          HorizontalAlignment="Right" VerticalAlignment="Top"/>
         
-        <ui:UserPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
-        <ui:RepoListPanel x:Name="RepoListPanel" Grid.Row="2" Grid.Column="0"/>
-        <ui:GitRepoPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="49" Width="160"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <ui:UserPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="0 -24 0 0"/>
+            <ui:RepoListPanel x:Name="RepoListPanel" Grid.Row="2" Grid.Column="0"/>
+            <ui:GitRepoPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
                          DataContext="{Binding SelectedRepo, Converter={StaticResource RepoDetailConverter}, ElementName=RepoListPanel}"/>
-        
-        <GridSplitter Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="4"
+
+            <GridSplitter Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="4" Margin="0 -24 0 0"
                       Background="Transparent" BorderThickness="0 0 1 0"
                       BorderBrush="{DynamicResource Theme.Brush.Accent}"
                       WindowChrome.IsHitTestVisibleInChrome="True"/>
-        <wc:SystemButtons Grid.Row="0" Grid.Column="1" Margin="0 -4 0 0"
-                          HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Window>
