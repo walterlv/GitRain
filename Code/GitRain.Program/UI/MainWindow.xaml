@@ -4,7 +4,12 @@
         xmlns:ui="clr-namespace:Cvte.GitRain.UI"
         xmlns:wc="clr-namespace:Cvte.GitRain.Windows.Controls"
         Title="Git Rain" Width="960" Height="640"
-        BorderBrush="{DynamicResource Theme.Brush.Accent}">
+        BorderBrush="{DynamicResource Theme.Brush.Accent}"
+        SnapsToDevicePixels="True">
+    <FrameworkElement.Resources>
+        <ui:GitRepoToDetalConverter x:Key="RepoDetailConverter"/>
+    </FrameworkElement.Resources>
+    
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="BorderThickness" Value="0 4"/>
@@ -15,6 +20,7 @@
             </Style.Triggers>
         </Style>
     </Window.Style>
+    
     <WindowChrome.WindowChrome>
         <WindowChrome CornerRadius="0" GlassFrameThickness="0 0 0 1"
                       UseAeroCaptionButtons="False" CaptionHeight="72"/>
@@ -23,17 +29,23 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="80"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <ui:UserPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0"/>
-        <GridSplitter Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="4"/>
-        <ui:RepoListPanel Grid.Row="2" Grid.Column="0"/>
-        <ui:GitRepoPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"/>
+        <ui:RepoListPanel x:Name="RepoListPanel" Grid.Row="2" Grid.Column="0"/>
+        <ui:GitRepoPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+                         DataContext="{Binding SelectedRepo, Converter={StaticResource RepoDetailConverter}, ElementName=RepoListPanel}"/>
+        
+        <GridSplitter Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Width="4"
+                      Background="Transparent" BorderThickness="0 0 1 0"
+                      BorderBrush="{DynamicResource Theme.Brush.Accent}"
+                      WindowChrome.IsHitTestVisibleInChrome="True"/>
         <wc:SystemButtons Grid.Row="0" Grid.Column="1" Margin="0 -4 0 0"
                           HorizontalAlignment="Right" VerticalAlignment="Top"/>
     </Grid>

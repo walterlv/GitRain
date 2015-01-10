@@ -7,6 +7,7 @@
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=PropertyName/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=propertyName/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=propertyName/Expression/@EntryValue">decapitalize(PropertyName)</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=propertyName/InitialRange/@EntryValue">-1</s:Int64>
 	
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=PropertyName/Order/@EntryValue">1</s:Int64>
 	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=propertyName/Order/@EntryValue">2</s:Int64>
