@@ -7,9 +7,12 @@
              xmlns:cd="clr-namespace:Cvte.GitRain.Designing"
              mc:Ignorable="d cd" d:DesignWidth="800" d:DesignHeight="540"
              Foreground="{DynamicResource Theme.Brush.Foreground}">
-    <cd:Designer.DataContext>
-        <data:GitRepoEntry RepoName="Git Repository"/>
-    </cd:Designer.DataContext>
+    <FrameworkElement.DataContext>
+        <data:GitRepoEntry RepoName="Git Repository 仓库"/>
+    </FrameworkElement.DataContext>
+    <FrameworkElement.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </FrameworkElement.Resources>
 
     <Grid SnapsToDevicePixels="True">
         <Grid.RowDefinitions>
@@ -19,23 +22,37 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Height="40" ZIndex="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock FontSize="48" Margin="4" Text="{Binding RepoName}"/>
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button MinWidth="120" Margin="8 8 0 8">
+            <TextBlock FontSize="48" Margin="4 -64 4 4"
+                       Text="{Binding RepoName}" FontWeight="Thin"
+                       VerticalAlignment="Bottom"
+                       TextTrimming="CharacterEllipsis"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
+                <Button MinWidth="120" Margin="4 4 0 4">
                     <TextBlock>
-                        <Run FontSize="18" Text="同步"></Run>
+                        <Run FontSize="18" Text="同步"/>
                     </TextBlock>
                 </Button>
-                <Button Width="20" Margin="0 8 8 8" FontFamily="WebDings" Content="6"/>
+                <ToggleButton x:Name="SyncExtraButton" Width="20" Margin="0 4 4 4"
+                              FontFamily="WebDings" Content="6"/>
             </StackPanel>
+            <Border Grid.Column="0" Grid.ColumnSpan="2" Margin="0 36 4 -320"
+                    MinWidth="140" MaxWidth="240" MinHeight="80" MaxHeight="160"
+                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                    BorderThickness="1"
+                    BorderBrush="{DynamicResource Theme.Brush.Accent}"
+                    Background="{DynamicResource Theme.Brush.Background}"
+                    Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=SyncExtraButton}">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto"/>
+            </Border>
         </Grid>
 
-        <UniformGrid Grid.Row="1" Rows="1">
+        <UniformGrid Grid.Row="1" Rows="1" WindowChrome.IsHitTestVisibleInChrome="True">
             <UniformGrid.Resources>
                 <Style TargetType="{x:Type RadioButton}">
                     <Setter Property="FontSize" Value="24"/>
@@ -68,14 +85,11 @@
             <RadioButton Content="提交" IsChecked="True"/>
             <RadioButton Content="仓库"/>
             <RadioButton Content="命令行"/>
+            <RadioButton Content="设置"/>
         </UniformGrid>
 
-        <Border Grid.Row="2" BorderThickness="0 2" BorderBrush="{DynamicResource Theme.Brush.Accent}">
+        <Border Grid.Row="2" BorderThickness="0 2 0 0" BorderBrush="{DynamicResource Theme.Brush.Accent}">
             <Frame NavigationUIVisibility="Hidden"/>
         </Border>
-        
-        <Grid Grid.Row="3">
-            
-        </Grid>
     </Grid>
 </UserControl>
