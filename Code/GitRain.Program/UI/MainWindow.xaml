@@ -1,0 +1,9 @@
+﻿<Window x:Class="Cvte.GitRain.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:Cvte.GitRain.UI"
+        Title="Git Rain" Width="960" Height="640">
+    <Grid>
+        <ui:GitRepoPanel/>
+    </Grid>
+</Window>

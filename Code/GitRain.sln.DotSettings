@@ -1,0 +1,31 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Description/@EntryValue">Property Statement for NotificationObject.</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=PropertyName/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=propertyName/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=propertyName/Expression/@EntryValue">decapitalize(PropertyName)</s:String>
+	
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=PropertyName/Order/@EntryValue">1</s:Int64>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=propertyName/Order/@EntryValue">2</s:Int64>
+	
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=PropertyType/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=PropertyType/Expression/@EntryValue">guessValueType(propertyName)</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=PropertyType/InitialRange/@EntryValue">1</s:Int64>
+	
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Field/=PropertyType/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">5.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/Type/@EntryValue">InCSharpTypeMember</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Shortcut/@EntryValue">nprop</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Text/@EntryValue">private $PropertyType$ _$propertyName$;&#xD;
+public $PropertyType$ $PropertyName$&#xD;
+{&#xD;
+    get { return _$propertyName$; }&#xD;
+    set { SetProperty(ref _$propertyName$, value); }&#xD;
+}</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E389D6DEF3137745A76959570B141F54/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	
+	
+	</wpf:ResourceDictionary>

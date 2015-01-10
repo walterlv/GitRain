@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTemplate x:Key="Internal.Template.RadioButton.RepoOperationNavigationTab" TargetType="{x:Type RadioButton}">
+        
+    </ControlTemplate>
+
+    <Style x:Key="Style.RadioButton.RepoOperationNavigationTab" TargetType="{x:Type RadioButton}">
+        <Setter Property="Template" Value="{StaticResource Internal.Template.RadioButton.RepoOperationNavigationTab}"/>
+    </Style>
+    
+</ResourceDictionary>
