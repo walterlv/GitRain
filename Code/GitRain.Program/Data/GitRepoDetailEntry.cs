@@ -10,7 +10,7 @@ namespace Cvte.GitRain.Data
             _syncCommand = new ActionCommand(Sync);
         }
 
-        public GitRepoDetailEntry(GitRepoEntry entry)
+        public GitRepoDetailEntry(GitRepoEntry entry) : this()
         {
             RepoName = entry.RepoName;
             LocalDirectory = entry.LocalDirectory;

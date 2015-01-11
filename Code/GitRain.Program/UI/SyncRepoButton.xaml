@@ -104,7 +104,7 @@
         </ControlTemplate>
 
         <ControlTemplate x:Key="SyncExtraButtonTemplate2" TargetType="{x:Type ToggleButton}">
-            <Grid>
+            <Grid ClipToBounds="True">
                 <Border Name="Bd" Background="{DynamicResource Theme.Brush.Accent}" Opacity="0"
                         BorderThickness="1 0 0 0" BorderBrush="{DynamicResource Theme.Brush.Background}"/>
                 <Border BorderThickness="1 0 0 0" BorderBrush="{DynamicResource Theme.Brush.Background}">
@@ -151,7 +151,8 @@
     </FrameworkElement.Resources>
     
     <Grid>
-        <Grid HorizontalAlignment="Right" Margin="4" WindowChrome.IsHitTestVisibleInChrome="True">
+        <Grid HorizontalAlignment="Right" Margin="4" WindowChrome.IsHitTestVisibleInChrome="True"
+              Stylus.IsPressAndHoldEnabled="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
