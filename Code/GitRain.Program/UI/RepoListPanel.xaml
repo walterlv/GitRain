@@ -15,9 +15,7 @@
                     <ColumnDefinition Width="7"/>
                 </Grid.ColumnDefinitions>
                 <Border x:Name="BodyBorder" Grid.Column="0" Opacity="0.3"/>
-                <ContentPresenter Grid.Column="0"
-        			Content="{TemplateBinding Content}"
-        			ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                <ContentPresenter Grid.Column="0" ContentSource="{TemplateBinding Content}"/>
                 <Border x:Name="EdgeBorder" Grid.Column="1"/>
             </Grid>
             <ControlTemplate.Triggers>
