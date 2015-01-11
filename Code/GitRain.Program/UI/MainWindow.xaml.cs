@@ -13,6 +13,11 @@ namespace Cvte.GitRain.UI
         {
             InitializeComponent();
         }
+
+        private void RepoListPanel_Selected(object sender, EventArgs e)
+        {
+            GitGlobalPanel.Clear();
+        }
     }
 
     internal class GitRepoToDetalConverter : IValueConverter

@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="Cvte.GitRain.UI.GitGlobalPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:data="clr-namespace:Cvte.GitRain.Data"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:ui="clr-namespace:Cvte.GitRain.UI"
+             mc:Ignorable="d" d:DesignWidth="160" d:DesignHeight="56">
+
+    <UserControl.Resources>
+        <!-- ReSharper disable Xaml.RedundantResource -->
+        <system:String x:Key="GitOpenOrCreateRepo">新建仓库</system:String>
+        <system:String x:Key="GitCloneRepo">克隆仓库</system:String>
+        <system:String x:Key="GitConfig">全局 Git 配置</system:String>
+        <system:String x:Key="Empty">空白</system:String>
+        <!-- ReSharper restore Xaml.RedundantResource -->
+        <StreamGeometry x:Key="NewRepoGeometry">M2.880352,35.504997L25.563028,35.504997 25.461889,35.77055C24.680614,37.90033 24.254,40.199783 24.254,42.596951 24.254,44.994007 24.680614,47.293259 25.461889,49.422794L25.562908,49.688 2.880352,49.688C1.290522,49.688,3.8410201E-07,48.396416,0,46.807915L0,38.38258C3.8410201E-07,36.794079,1.290522,35.504997,2.880352,35.504997z M41.691601,32.867001L41.691601,40.591217 33.968002,40.591217 33.968002,45.48729 41.691601,45.48729 41.691601,53.211002 46.587406,53.211002 46.587406,45.48729 54.311005,45.48729 54.311005,40.591217 46.587406,40.591217 46.587406,32.867001z M44.126499,27.625C52.394669,27.625 59.098,34.325611 59.098,42.596501 59.098,50.859093 52.394669,57.565003 44.126499,57.565003 35.858036,57.565003 29.156,50.859093 29.156,42.596501 29.156,34.325611 35.858036,27.625 44.126499,27.625z M2.880352,17.594002L43.182121,17.594002C44.771912,17.594002,46.061001,18.882946,46.061001,20.471779L46.061001,22.816408 45.653107,22.780068C45.149128,22.741593 44.639954,22.722 44.126297,22.722 37.278214,22.722 31.227619,26.205 27.652683,31.492657L27.472803,31.773003 2.880352,31.773003C1.290522,31.773001,3.8410201E-07,30.484057,8.8062882E-07,28.893322L8.8062882E-07,20.471779C3.8410201E-07,18.882946,1.290522,17.594002,2.880352,17.594002z M8.4794798,3.8200022C6.678607,3.8200022 5.2110004,5.2864023 5.2110014,7.0887662 5.2110004,8.8935586 6.678607,10.357 8.4794798,10.357 10.281624,10.357 11.748,8.8935586 11.748,7.0887662 11.748,5.2864023 10.281624,3.8200022 8.4794798,3.8200022z M2.880352,0L43.182117,0C44.771912,5.590332E-07,46.061001,1.2890898,46.061001,2.8779911L46.061001,11.302441C46.061001,12.893875,44.771912,14.18,43.182117,14.18L2.880352,14.18C1.290522,14.18,3.8410201E-07,12.893875,0,11.302441L0,2.8779911C3.8410201E-07,1.2890898,1.290522,5.590332E-07,2.880352,0z</StreamGeometry>
+        <StreamGeometry x:Key="CloneRepoGeometry">M2.4011445,29.590999L21.118492,29.590999 21.056913,29.842739C20.784836,31.018469 20.641001,32.242752 20.641001,33.5 20.641001,36.29388 21.351297,38.924988 22.600782,41.22221L22.706446,41.410999 2.4011445,41.410999C1.0756909,41.410999,-2.5183563E-07,40.335525,4.4218915E-14,39.010162L4.4218915E-14,31.989338C-2.5183563E-07,30.666572,1.0756909,29.590999,2.4011445,29.590999z M35.946209,23.442999L35.946209,38.633774 30.187002,32.876209 30.146,32.918011 30.146,36.038982 35.476791,41.368061 37.079151,42.970997 43.969997,36.081878 43.969997,32.876209 38.211189,38.633774 38.211189,23.442999z M36.854446,21.285999C43.599262,21.285999 49.068001,26.752479 49.068001,33.5 49.068001,40.24242 43.599262,45.714001 36.854446,45.714001 30.109732,45.714001 24.641001,40.24242 24.641001,33.5 24.641001,26.752479 30.109732,21.285999 36.854446,21.285999z M2.4011445,14.663999L35.990074,14.663999C37.31559,14.663999,38.390999,15.737036,38.390999,17.062481L38.390999,17.359283 38.10009,17.333368C37.688923,17.301981 37.273518,17.285999 36.85445,17.285999 30.428812,17.285999 24.864136,21.043543 22.242283,26.476805L22.239855,26.481998 2.4011445,26.481998C1.075691,26.481998,-2.5183563E-07,25.406563,4.4218915E-14,24.081016L4.4218915E-14,17.062481C-2.5183563E-07,15.737036,1.075691,14.663999,2.4011445,14.663999z M7.068119,3.1849985C5.5654387,3.184999 4.3439984,4.4064391 4.3439984,5.909128 4.3439984,7.4115684 5.5654387,8.6329992 7.068119,8.6329992 8.5705585,8.6329992 9.7919979,7.4115684 9.7919979,5.909128 9.7919979,4.4064391 8.5705585,3.184999 7.068119,3.1849985z M2.4011438,1.8474111E-13L35.99007,1.8474111E-13C37.315586,-5.0557689E-07,38.390995,1.0754751,38.390995,2.3985205L38.390995,9.4195078C38.390995,10.745262,37.315586,11.818,35.99007,11.818L2.4011438,11.818C1.0756909,11.818,-2.5183563E-07,10.745262,4.4218915E-14,9.4195078L4.4218915E-14,2.3985205C-2.5183563E-07,1.0754751,1.0756909,-5.0557689E-07,2.4011438,1.8474111E-13z</StreamGeometry>
+        <StreamGeometry x:Key="GitConfiGeometry">M383.518,230.427C299.063,230.427 230.355,299.099 230.355,383.554 230.355,468.009 299.063,536.644 383.518,536.644 467.937,536.644 536.645,468.009 536.645,383.554 536.645,299.099 467.937,230.427 383.518,230.427z M340.229,0L426.771,0C436.838,0,445.035,8.19732,445.035,18.2643L445.035,115.303C475.165,122.17,503.532,133.928,529.634,150.43L598.306,81.6869C601.721,78.3074 606.359,76.3653 611.213,76.3653 616.031,76.3653 620.704,78.3074 624.12,81.6869L685.278,142.916C692.397,150.035,692.397,161.648,685.278,168.767L616.677,237.402C633.108,263.54,644.866,291.907,651.733,322.001L748.736,322.001C758.803,322.001,767,330.198,767,340.265L767,426.806C767,436.873,758.803,445.07,748.736,445.07L651.769,445.07C644.901,475.235,633.108,503.531,616.677,529.669L685.278,598.305C688.694,601.72 690.635,606.358 690.635,611.212 690.635,616.102 688.694,620.705 685.278,624.12L624.085,685.313C620.525,688.872 615.851,690.67 611.177,690.67 606.503,690.67 601.865,688.872 598.269,685.313L529.67,616.678C503.567,633.109,475.2,644.937,445.035,651.804L445.035,748.771C445.035,758.838,436.838,767,426.771,767L340.229,767C330.162,767,321.965,758.838,321.965,748.771L321.965,651.804C291.8,644.937,263.433,633.109,237.366,616.678L168.731,685.313C165.315,688.693 160.677,690.67 155.823,690.67 151.005,690.67 146.296,688.693 142.916,685.313L81.7221,624.12C74.6033,617.036,74.6033,605.424,81.7221,598.305L150.323,529.669C133.892,503.603,122.099,475.235,115.267,445.07L18.2643,445.07C8.19734,445.07,0,436.873,0,426.806L0,340.265C0,330.198,8.19734,322.001,18.2643,322.001L115.267,322.001C122.135,291.907,133.892,263.54,150.323,237.402L81.7221,168.767C78.3064,165.351 76.3655,160.713 76.3655,155.859 76.3655,150.97 78.3064,146.332 81.7221,142.916L142.916,81.7582C146.476,78.1988 151.149,76.4016 155.823,76.4016 160.497,76.4016 165.171,78.1988 168.731,81.7582L237.366,150.43C263.469,133.928,291.837,122.17,321.965,115.303L321.965,18.2643C321.965,8.19732,330.162,0,340.229,0z</StreamGeometry>
+        
+        <ControlTemplate x:Key="GitGlobalItemTemplate" TargetType="{x:Type ToggleButton}">
+            <Grid Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="7"/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="BodyBorder" Grid.Column="0" Opacity="0.3"/>
+                <ContentPresenter Grid.Column="0" Margin="{TemplateBinding Padding}"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                <Border x:Name="EdgeBorder" Grid.Column="1"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="BodyBorder" Property="Background" Value="{DynamicResource Theme.Brush.Highlight1}"/>
+                    <Setter TargetName="EdgeBorder" Property="Background" Value="{DynamicResource Theme.Brush.Highlight1}"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter TargetName="BodyBorder" Property="Background" Value="{DynamicResource Theme.Brush.Accent}"/>
+                    <Setter TargetName="EdgeBorder" Property="Background" Value="{DynamicResource Theme.Brush.Accent}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style TargetType="{x:Type ToggleButton}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="8 0 4 0"/>
+            <Setter Property="Foreground" Value="{DynamicResource Theme.Brush.AccentHightlight}"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template" Value="{StaticResource GitGlobalItemTemplate}"/>
+        </Style>
+
+        <ControlTemplate x:Key="GitGlobalTabTemplate" TargetType="{x:Type RadioButton}">
+            <Grid Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border x:Name="BodyBorder" Grid.Row="1" Opacity="0.3"/>
+                <ContentPresenter Grid.Row="1" Margin="{TemplateBinding Padding}"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                <Border x:Name="EdgeBorder" Grid.Row="0"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="BodyBorder" Property="Background" Value="{DynamicResource Theme.Brush.Highlight1}"/>
+                    <Setter TargetName="EdgeBorder" Property="Background" Value="{DynamicResource Theme.Brush.Highlight1}"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter TargetName="BodyBorder" Property="Background" Value="{DynamicResource Theme.Brush.Accent}"/>
+                    <Setter TargetName="EdgeBorder" Property="Background" Value="{DynamicResource Theme.Brush.Accent}"/>
+                    <Setter TargetName="BodyBorder" Property="Opacity" Value="1"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Foreground" Value="{DynamicResource Theme.Brush.Highlight2}"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template" Value="{StaticResource GitGlobalTabTemplate}"/>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource Theme.Brush.Background}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToggleButton x:Name="TabButton" Grid.Row="0" Height="32" IsHitTestVisible="False"/>
+        <UniformGrid x:Name="FuncPanel" Grid.Row="1" Rows="1" Height="24"
+                     RadioButton.Checked="OnCheckChanged" RadioButton.Unchecked="OnCheckChanged">
+            <RadioButton Command="{x:Static data:GlobalCommands.GitOpenOrCreateRepo}">
+                <Path Data="{StaticResource NewRepoGeometry}" Stretch="Uniform"
+                      Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}"/>
+            </RadioButton>
+            <RadioButton Command="{x:Static data:GlobalCommands.GitCloneRepo}">
+                <Path Data="{StaticResource CloneRepoGeometry}" Stretch="Uniform"
+                      Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}"/>
+            </RadioButton>
+            <RadioButton Command="{x:Static ui:GitGlobalPanel.EmptyCommand}"/>
+            <RadioButton Command="{x:Static data:GlobalCommands.GitConfig}">
+                <Path Data="{StaticResource GitConfiGeometry}" Stretch="Uniform"
+                      Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}"/>
+            </RadioButton>
+        </UniformGrid>
+    </Grid>
+</UserControl>

@@ -56,10 +56,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\GlobalCommand.cs" />
+    <Compile Include="Core\InternalExtensions.cs" />
+    <Compile Include="Data\GlobalCommands.cs" />
     <Compile Include="Data\GitRepoCollectionEntry.cs" />
     <Compile Include="Data\GitRepoEntry.cs" />
+    <Compile Include="UI\GitGlobalPanel.xaml.cs">
+      <DependentUpon>GitGlobalPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Controls\SystemButtons.cs" />
-    <Compile Include="Windows\InternalExtensions.cs" />
+    <Compile Include="Windows\WindowExtensions.cs" />
     <Compile Include="Windows\Controls\CaptionButton.cs" />
     <Compile Include="UI\RepoListPanel.xaml.cs">
       <DependentUpon>RepoListPanel.xaml</DependentUpon>
@@ -97,6 +103,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Unique.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\GitGlobalPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -84,9 +84,9 @@
                     </Style.Triggers>
                 </Style>
             </UniformGrid.Resources>
-            <RadioButton Content="提交" IsChecked="True"/>
-            <RadioButton Content="仓库"/>
-            <RadioButton Content="命令行"/>
+            <RadioButton Content="仓库" IsChecked="True"/>
+            <RadioButton Content="历史"/>
+            <RadioButton Content="管理"/>
             <RadioButton Content="设置"/>
         </UniformGrid>
 

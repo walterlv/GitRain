@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Cvte.GitRain.Data;
 
@@ -9,6 +10,15 @@ namespace Cvte.GitRain.UI
         public RepoListPanel()
         {
             InitializeComponent();
+            GlobalCommand.AnyExecuted += GlobalCommand_AnyExecuted;
+        }
+
+        private void GlobalCommand_AnyExecuted(object sender, GlobalCommandEventArgs e)
+        {
+            if (e.Key.StartsWith("Git"))
+            {
+                RepoListBox.SelectedIndex = -1;
+            }
         }
 
         public static readonly DependencyProperty SelectedRepoProperty = DependencyProperty.Register(
@@ -19,6 +29,33 @@ namespace Cvte.GitRain.UI
         {
             get { return (GitRepoEntry) GetValue(SelectedRepoProperty); }
             set { SetValue(SelectedRepoProperty, value); }
+        }
+
+        private void RepoListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (RepoListBox.SelectedIndex >= 0)
+            {
+                _lastSelectedIndex = RepoListBox.SelectedIndex;
+            }
+            if (e.AddedItems.Count > 0)
+            {
+                OnSelected();
+            }
+        }
+
+        public void Reselect()
+        {
+            RepoListBox.SelectedIndex = _lastSelectedIndex;
+        }
+
+        private int _lastSelectedIndex;
+
+        public event EventHandler Selected;
+
+        private void OnSelected()
+        {
+            var handler = Selected;
+            if (handler != null) handler(this, EventArgs.Empty);
         }
     }
 }
