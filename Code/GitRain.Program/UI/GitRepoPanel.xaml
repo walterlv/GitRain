@@ -5,16 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:data="clr-namespace:Cvte.GitRain.Data"
              xmlns:cd="clr-namespace:Cvte.GitRain.Designing"
+             xmlns:ui="clr-namespace:Cvte.GitRain.UI"
              mc:Ignorable="d cd" d:DesignWidth="800" d:DesignHeight="540"
              Foreground="{DynamicResource Theme.Brush.Foreground}">
     
     <FrameworkElement.DataContext>
         <data:GitRepoDetailEntry RepoName="Git Repository Name"/>
     </FrameworkElement.DataContext>
-    
-    <FrameworkElement.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-    </FrameworkElement.Resources>
 
     <Grid Visibility="{Binding DataContext, ElementName=ThisControl, TargetNullValue={x:Static Visibility.Collapsed}}">
         <Grid.RowDefinitions>
@@ -33,25 +30,7 @@
                        Text="{Binding RepoName}" FontWeight="Thin"
                        VerticalAlignment="Bottom"
                        TextTrimming="CharacterEllipsis"/>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
-                <Button MinWidth="120" Margin="4 4 0 4">
-                    <TextBlock>
-                        <Run FontSize="16" Text="同步"/>
-                    </TextBlock>
-                </Button>
-                <ToggleButton x:Name="SyncExtraButton" Width="20" Margin="0 4 4 4"
-                              FontFamily="WebDings" Content="6"/>
-            </StackPanel>
-            <Border Grid.Column="0" Grid.ColumnSpan="2" Margin="0 36 4 -320"
-                    MinWidth="140" MaxWidth="240" MinHeight="80" MaxHeight="160"
-                    HorizontalAlignment="Right" VerticalAlignment="Top"
-                    BorderThickness="1"
-                    BorderBrush="{DynamicResource Theme.Brush.Accent}"
-                    Background="{DynamicResource Theme.Brush.Background}"
-                    Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=SyncExtraButton}">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                              VerticalScrollBarVisibility="Auto"/>
-            </Border>
+            <ui:SyncRepoButton Grid.Column="1"/>
         </Grid>
 
         <UniformGrid Grid.Row="1" Rows="1" WindowChrome.IsHitTestVisibleInChrome="True">

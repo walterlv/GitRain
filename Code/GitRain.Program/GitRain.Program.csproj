@@ -64,6 +64,9 @@
     <Compile Include="UI\GitGlobalPanel.xaml.cs">
       <DependentUpon>GitGlobalPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\SyncRepoButton.xaml.cs">
+      <DependentUpon>SyncRepoButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Controls\SystemButtons.cs" />
     <Compile Include="Windows\WindowExtensions.cs" />
     <Compile Include="Windows\Controls\CaptionButton.cs" />
@@ -134,6 +137,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\RepoListPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SyncRepoButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

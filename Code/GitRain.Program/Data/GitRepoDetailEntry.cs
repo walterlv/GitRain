@@ -10,6 +10,9 @@
         {
             RepoName = entry.RepoName;
             LocalDirectory = entry.LocalDirectory;
+            HaveContentToSync = true;
         }
+
+        public bool HaveContentToSync { get; set; }
     }
 }
