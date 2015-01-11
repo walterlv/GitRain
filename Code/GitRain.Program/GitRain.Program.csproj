@@ -56,11 +56,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\ActionCommand.cs" />
     <Compile Include="Core\GlobalCommand.cs" />
     <Compile Include="Core\InternalExtensions.cs" />
     <Compile Include="Data\GlobalCommands.cs" />
     <Compile Include="Data\GitRepoCollectionEntry.cs" />
     <Compile Include="Data\GitRepoEntry.cs" />
+    <Compile Include="Git\GitCommandExecutor.cs" />
+    <Compile Include="Git\GitOperator.cs" />
     <Compile Include="UI\GitGlobalPanel.xaml.cs">
       <DependentUpon>GitGlobalPanel.xaml</DependentUpon>
     </Compile>

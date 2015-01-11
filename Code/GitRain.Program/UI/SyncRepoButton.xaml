@@ -156,7 +156,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.ColumnSpan="2" MinWidth="141" Padding="4 0 25 0" Content="同步  ↓7 ↑2"/>
+            <Button Grid.Column="0" Grid.ColumnSpan="2" MinWidth="141" Padding="4 0 25 0" Command="{Binding SyncCommand}" Content="同步  ↓7 ↑2"/>
             <ToggleButton x:Name="SyncExtraButton" Grid.Column="1" Width="21" FontFamily="WebDings" Content="6"/>
         </Grid>
         <Border Margin="0 35 4 -320"
