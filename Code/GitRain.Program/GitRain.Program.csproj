@@ -71,13 +71,23 @@
     <Compile Include="Git\GitCommandExecutor.cs" />
     <Compile Include="Git\GitData.cs" />
     <Compile Include="Git\GitOperator.cs" />
+    <Compile Include="UI\CreateOrCloneRepoPage.xaml.cs">
+      <DependentUpon>CreateOrCloneRepoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\GitConfigPage.xaml.cs">
+      <DependentUpon>GitConfigPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\GitGlobalPanel.xaml.cs">
       <DependentUpon>GitGlobalPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\GitOperationPanel.xaml.cs">
+      <DependentUpon>GitOperationPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\SyncRepoButton.xaml.cs">
       <DependentUpon>SyncRepoButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Controls\SystemButtons.cs" />
+    <Compile Include="Windows\VisibilityConverter.cs" />
     <Compile Include="Windows\WindowExtensions.cs" />
     <Compile Include="Windows\Controls\CaptionButton.cs" />
     <Compile Include="UI\RepoListPanel.xaml.cs">
@@ -119,7 +129,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\CreateOrCloneRepoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\GitConfigPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\GitGlobalPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\GitOperationPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

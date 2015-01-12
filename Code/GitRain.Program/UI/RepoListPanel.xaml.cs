@@ -19,6 +19,10 @@ namespace Cvte.GitRain.UI
             {
                 RepoListBox.SelectedIndex = -1;
             }
+            else if (e.Key.StartsWith("Back"))
+            {
+                RepoListBox.SelectedIndex = _lastSelectedIndex;
+            }
         }
 
         public static readonly DependencyProperty SelectedRepoProperty = DependencyProperty.Register(

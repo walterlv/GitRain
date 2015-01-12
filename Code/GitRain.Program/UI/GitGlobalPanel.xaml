@@ -10,8 +10,7 @@
 
     <UserControl.Resources>
         <!-- ReSharper disable Xaml.RedundantResource -->
-        <system:String x:Key="GitOpenOrCreateRepo">新建仓库</system:String>
-        <system:String x:Key="GitCloneRepo">克隆仓库</system:String>
+        <system:String x:Key="GitCreateOrCloneRepo">新建仓库</system:String>
         <system:String x:Key="GitConfig">全局 Git 配置</system:String>
         <system:String x:Key="Empty">空白</system:String>
         <!-- ReSharper restore Xaml.RedundantResource -->
@@ -104,13 +103,13 @@
         <ToggleButton x:Name="TabButton" Grid.Row="0" Height="32" IsHitTestVisible="False"/>
         <UniformGrid x:Name="FuncPanel" Grid.Row="1" Rows="1" Height="24"
                      RadioButton.Checked="OnCheckChanged" RadioButton.Unchecked="OnCheckChanged">
-            <RadioButton Command="{x:Static data:GlobalCommands.GitOpenOrCreateRepo}">
+            <RadioButton Command="{x:Static data:GlobalCommands.GitCreateOrCloneRepo}">
                 <Path Data="{StaticResource NewRepoGeometry}" Stretch="Uniform"
                       Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}"/>
             </RadioButton>
-            <RadioButton Command="{x:Static data:GlobalCommands.GitCloneRepo}">
-                <Path Data="{StaticResource CloneRepoGeometry}" Stretch="Uniform"
-                      Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}"/>
+            <RadioButton Command="{x:Static ui:GitGlobalPanel.EmptyCommand}">
+                <!--<Path Data="{StaticResource CloneRepoGeometry}" Stretch="Uniform"
+                      Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Control}}}"/>-->
             </RadioButton>
             <RadioButton Command="{x:Static ui:GitGlobalPanel.EmptyCommand}"/>
             <RadioButton Command="{x:Static data:GlobalCommands.GitConfig}">

@@ -3,13 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="clr-namespace:Cvte.GitRain.UI"
         xmlns:wc="clr-namespace:Cvte.GitRain.Windows.Controls"
-        Title="Git Rain" MinWidth="400" MinHeight="240" Width="960" Height="640"
+        xmlns:w="clr-namespace:Cvte.GitRain.Windows"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" Title="Git Rain"
+        MinWidth="400" MinHeight="240" Width="960" Height="640"
         BorderBrush="{DynamicResource Theme.Brush.Accent}"
         SnapsToDevicePixels="True">
     <FrameworkElement.Resources>
         <ui:GitRepoToDetalConverter x:Key="RepoDetailConverter"/>
+        <w:VisibilityConverter x:Key="BooleanToReversedVisibilityConverter">
+            <w:VisibilityConverter.Visible>
+                <system:Boolean>False</system:Boolean>
+            </w:VisibilityConverter.Visible>
+            <w:VisibilityConverter.Collapsed>
+                <system:Boolean>True</system:Boolean>
+            </w:VisibilityConverter.Collapsed>
+        </w:VisibilityConverter>
     </FrameworkElement.Resources>
-    
+
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="BorderThickness" Value="0 4"/>
@@ -20,7 +33,7 @@
             </Style.Triggers>
         </Style>
     </Window.Style>
-    
+
     <WindowChrome.WindowChrome>
         <WindowChrome CornerRadius="0" GlassFrameThickness="0 0 0 1"
                       UseAeroCaptionButtons="False" CaptionHeight="72"/>
@@ -31,7 +44,7 @@
             <wc:CaptionButton Content="i" FontSize="18" Padding="0 4 0 0" FontFamily="Sitka Text" FontWeight="Medium"/>
             <wc:SystemButtons/>
         </StackPanel>
-        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="49" Width="160"/>
@@ -49,8 +62,12 @@
                 <ui:GitGlobalPanel x:Name="GitGlobalPanel"  Grid.Row="2"/>
             </Grid>
 
-            <ui:GitRepoPanel Grid.Column="1" Margin="0 24 0 0"
-                             DataContext="{Binding SelectedRepo, Converter={StaticResource RepoDetailConverter}, ElementName=RepoListPanel}"/>
+            <Grid Grid.Column="1" Margin="0 24 0 0">
+                <ui:GitRepoPanel x:Name="GitRepoPanel" DataContext="{Binding SelectedRepo, Converter={StaticResource RepoDetailConverter}, ElementName=RepoListPanel}"
+                                 Visibility="{Binding SelectedRepo, ElementName=RepoListPanel, TargetNullValue={x:Static Visibility.Collapsed}}"/>
+
+                <ui:GitOperationPanel Visibility="{Binding IsVisible, Converter={StaticResource BooleanToReversedVisibilityConverter}, ElementName=GitRepoPanel, Mode=OneWay}"/>
+            </Grid>
 
             <GridSplitter Grid.Column="0" Width="4"
                           Background="Transparent" BorderThickness="0 0 1 0"
