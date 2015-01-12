@@ -50,18 +50,20 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Border x:Name="BodyBorder" Grid.Row="0" Opacity="0.3"/>
-                                    <Border x:Name="EdgeBorder" Grid.Row="1" Height="4"/>
-                                    <ContentPresenter Grid.Row="0" Grid.RowSpan="2" Margin="{TemplateBinding Padding}"
+                                    <Border x:Name="EdgeBorder" Grid.Row="1" Height="2"/>
+                                    <ContentPresenter Name="Presenter"  Grid.Row="0" Grid.RowSpan="2" Margin="{TemplateBinding Padding}"
                                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="BodyBorder" Property="Background" Value="{DynamicResource Theme.Brush.Highlight1}"/>
-                                        <Setter TargetName="EdgeBorder" Property="Background" Value="{DynamicResource Theme.Brush.Highlight1}"/>
+                                        <Setter TargetName="Presenter" Property="TextBlock.Foreground" Value="{DynamicResource Theme.Brush.AccentActive}"/>
+                                        <Setter TargetName="BodyBorder" Property="Background" Value="{DynamicResource Theme.Brush.Accent}"/>
+                                        <Setter TargetName="EdgeBorder" Property="Background" Value="{DynamicResource Theme.Brush.Accent}"/>
                                     </Trigger>
                                     <Trigger Property="IsChecked" Value="True">
                                         <Setter TargetName="BodyBorder" Property="Opacity" Value="1"/>
+                                        <Setter TargetName="Presenter" Property="TextBlock.Foreground" Value="{DynamicResource Theme.Brush.Background}"/>
                                         <Setter TargetName="BodyBorder" Property="Background" Value="{DynamicResource Theme.Brush.Accent}"/>
                                         <Setter TargetName="EdgeBorder" Property="Background" Value="{DynamicResource Theme.Brush.Accent}"/>
                                     </Trigger>
@@ -69,11 +71,6 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource Theme.Brush.Background}"/>
-                        </Trigger>
-                    </Style.Triggers>
                 </Style>
             </UniformGrid.Resources>
             <RadioButton Content="仓库" IsChecked="True"/>
