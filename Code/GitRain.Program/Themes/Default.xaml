@@ -3,6 +3,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Default.Brush.xaml"/>
+        <ResourceDictionary Source="Default.Button.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

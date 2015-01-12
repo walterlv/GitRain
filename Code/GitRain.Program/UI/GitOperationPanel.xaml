@@ -3,14 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ui="clr-namespace:Cvte.GitRain.UI"
              xmlns:data="clr-namespace:Cvte.GitRain.Data"
              mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="540">
     
     <FrameworkElement.Resources>
-        <StreamGeometry x:Key="BackGeometry">M352.389,167.431L414.781,229.865 301.365,343.249 591.411,343.201 591.461,424.762 311.585,424.762 419.915,533.037 352.389,600.534 135.824,383.98z M384,46.2231C297.556,46.2349 211.113,79.2221 145.15,145.149 13.2464,277.05 13.2201,490.886 145.15,622.785 277.076,754.734 490.921,754.734 622.854,622.785 754.758,490.933 754.78,277.05 622.854,145.149 556.888,79.1748 470.443,46.2112 384,46.2231z M383.983,1E-06C482.244,-0.005769 580.51,37.4812 655.499,112.478 805.526,262.473 805.475,505.508 655.499,655.504 505.573,805.499 262.475,805.499 112.502,655.504 -37.5258,505.508 -37.4752,262.425 112.502,112.478 187.466,37.5043 285.721,0.005767 383.983,1E-06z</StreamGeometry>
-        <StreamGeometry x:Key="BackGeometry2">M372.733,167.43L156.199,383.999 372.733,600.532 440.268,533.034 331.946,424.785 611.801,424.785 611.766,343.212 321.723,343.25 435.155,229.89z M384,0C596.107,6E-06 768,171.93 768,383.999 768,596.032 596.107,768 384,768 171.896,768 0,596.032 0,383.999 0,171.93 171.896,6E-06 384,0z</StreamGeometry>
-    </FrameworkElement.Resources>
+        </FrameworkElement.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -23,35 +20,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Width="48" Height="48" Margin="24 0" Command="{x:Static data:GlobalCommands.BackToRepo}"
-                    WindowChrome.IsHitTestVisibleInChrome="True">
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="Transparent">
-                            <Path Name="Icon" Data="{StaticResource BackGeometry}" Stretch="Uniform"
-                                  Fill="{DynamicResource Theme.Brush.Accent}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Icon" Property="Data" Value="{StaticResource BackGeometry2}"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Icon" Property="Data" Value="{StaticResource BackGeometry2}"/>
-                                <Setter TargetName="Icon" Property="Fill" Value="{DynamicResource Theme.Brush.AccentActive}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+            <Button Width="48" Height="48" Margin="24 0" Style="{StaticResource Style.Button.Back}"
+                    Command="{x:Static data:GlobalCommands.BackToRepo}"/>
             <TextBlock Grid.Column="1" FontSize="40"
                        Text="{Binding (Frame.Content).(Page.Title), ElementName=GitFrame}"
                        FontWeight="Thin" TextTrimming="CharacterEllipsis"
                        HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Grid>
-        <Frame x:Name="GitFrame" Grid.Row="1" Grid.Column="0" NavigationUIVisibility="Hidden">
-            <Frame.Content>
-                <ui:CreateOrCloneRepoPage/>
-            </Frame.Content>
-        </Frame>
+        <Frame x:Name="GitFrame" Grid.Row="1" Grid.Column="0" NavigationUIVisibility="Hidden" IsVisibleChanged="GitFrame_OnIsVisibleChanged"/>
     </Grid>
 </UserControl>

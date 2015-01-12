@@ -3,9 +3,84 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      mc:Ignorable="d" d:DesignWidth="540" d:DesignHeight="320"
-      Title="新建或克隆仓库">
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      xmlns:ui="clr-namespace:Cvte.GitRain.UI"
+      xmlns:data="clr-namespace:Cvte.GitRain.Data"
+      mc:Ignorable="d" d:DesignWidth="540" d:DesignHeight="540"
+      Title="新建或克隆仓库" DataContext="{x:Static data:GitGlobalEntry.Instance}">
+
+    <FrameworkElement.Resources>
+        <!-- ReSharper disable Xaml.RedundantResource -->
+        <system:String x:Key="Clone">克隆</system:String>
+        <system:String x:Key="Create">创建</system:String>
+        <system:String x:Key="Add">加入</system:String>
+        <!-- ReSharper restore Xaml.RedundantResource -->
+
+        <ui:TextBoxTextToGitCloneParameterConverter x:Key="GitCloneParameterConverter"/>
+        
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="{DynamicResource Theme.Brush.AccentActive}"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="8 4 0 4"/>
+            <Setter Property="Padding" Value="4"/>
+        </Style>
+    </FrameworkElement.Resources>
+
     <Grid>
-        <TextBlock FontSize="24" Text="我假装正在克隆仓库" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*" MinHeight="108"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*" MinHeight="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="0 4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="CreateOrCloneRepoLabel"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="源路径 / URL:"/>
+            <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1"
+                     Text="https://github.com/walterlv/GitRain.git"
+                     TextChanged="OnAnyTextChanged"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="本地路径:"/>
+            <TextBox x:Name="LocalPathTextBox" Grid.Row="1" Grid.Column="1"
+                     Text="C:\Users\lvyi\Documents\Codes\GitRain"
+                     TextChanged="OnAnyTextChanged"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Opacity="0.33"
+                       TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis"
+                       HorizontalAlignment="Center" FontSize="24" FontWeight="Thin"
+                       Foreground="{DynamicResource Theme.Brush.Accent}"
+                       Text="如果你只需要创建一个本地仓库，请将 URL 留空。"/>
+        </Grid>
+
+        <Button x:Name="CloneButton" Grid.Row="3" Grid.Column="1"
+                Content="{StaticResource Clone}" MaxWidth="120" Height="32"
+                Command="{Binding CloneOrCreateRepoCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource GitCloneParameterConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding ElementName="UrlTextBox" Path="Text"/>
+                        <Binding ElementName="LocalPathTextBox" Path="Text"/>
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
     </Grid>
 </Page>

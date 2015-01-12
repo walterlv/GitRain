@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Cvte.GitRain.Data;
 
 namespace Cvte.GitRain.UI
@@ -28,9 +29,21 @@ namespace Cvte.GitRain.UI
                 {
                     Text = ":( 努力开发中...",
                     FontSize = 48,
+                    FontWeight = FontWeights.Thin,
+                    Opacity = 0.33,
+                    TextTrimming = TextTrimming.CharacterEllipsis,
+                    Foreground = (Brush)FindResource("Theme.Brush.Accent"),
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                 };
+            }
+        }
+
+        private void GitFrame_OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (GitFrame.CanGoBack)
+            {
+                GitFrame.RemoveBackEntry();
             }
         }
     }

@@ -65,11 +65,13 @@
     <Compile Include="Core\InternalExtensions.cs" />
     <Compile Include="Core\IO\Ini\IniLine.cs" />
     <Compile Include="Core\IO\Ini\IniLineType.cs" />
+    <Compile Include="Data\GitGlobalEntry.cs" />
     <Compile Include="Data\GlobalCommands.cs" />
     <Compile Include="Data\GitRepoCollectionEntry.cs" />
     <Compile Include="Data\GitRepoEntry.cs" />
     <Compile Include="Git\GitCommandExecutor.cs" />
     <Compile Include="Git\GitData.cs" />
+    <Compile Include="Git\GitHelper.cs" />
     <Compile Include="Git\GitOperator.cs" />
     <Compile Include="UI\CreateOrCloneRepoPage.xaml.cs">
       <DependentUpon>CreateOrCloneRepoPage.xaml</DependentUpon>
@@ -98,6 +100,11 @@
     </Compile>
     <Compile Include="Windows\WindowAction.cs" />
     <Page Include="Themes\Default.Brush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>Default.xaml</DependentUpon>
+    </Page>
+    <Page Include="Themes\Default.Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>Default.xaml</DependentUpon>
