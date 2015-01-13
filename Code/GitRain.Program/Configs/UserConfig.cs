@@ -76,6 +76,7 @@ namespace Cvte.GitRain.Configs
                 SaveApp(root);
                 SaveUser(root);
                 SaveUI(root);
+                stream.Position = 0;
                 document.Save(stream);
             }
         }
