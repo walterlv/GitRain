@@ -65,10 +65,12 @@
     <Compile Include="Core\InternalExtensions.cs" />
     <Compile Include="Core\IO\Ini\IniLine.cs" />
     <Compile Include="Core\IO\Ini\IniLineType.cs" />
+    <Compile Include="Data\BingImageEntry.cs" />
     <Compile Include="Data\GitGlobalEntry.cs" />
     <Compile Include="Data\GlobalCommands.cs" />
     <Compile Include="Data\GitRepoCollectionEntry.cs" />
     <Compile Include="Data\GitRepoEntry.cs" />
+    <Compile Include="Configs\UserConfig.cs" />
     <Compile Include="Git\GitCommandExecutor.cs" />
     <Compile Include="Git\GitData.cs" />
     <Compile Include="Git\GitHelper.cs" />
@@ -87,6 +89,9 @@
     </Compile>
     <Compile Include="UI\SyncRepoButton.xaml.cs">
       <DependentUpon>SyncRepoButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BingImageControl.xaml.cs">
+      <DependentUpon>BingImageControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Controls\SystemButtons.cs" />
     <Compile Include="Windows\VisibilityConverter.cs" />
@@ -187,6 +192,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\BingImageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -218,6 +227,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Cmd\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConfigSample.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:data="clr-namespace:Cvte.GitRain.Data"
              xmlns:local="clr-namespace:Cvte.GitRain.UI"
-             mc:Ignorable="d" d:DesignWidth="160" d:DesignHeight="480">
+             mc:Ignorable="d" d:DesignWidth="160" d:DesignHeight="480"
+             DataContext="{x:Static data:GitRepoCollectionEntry.Instance}">
 
     <UserControl.Resources>
         <ControlTemplate x:Key="GitRepoItemTemplate" TargetType="{x:Type ListBoxItem}">
@@ -59,10 +60,6 @@
             </Border>
         </DataTemplate>
     </UserControl.Resources>
-
-    <UserControl.DataContext>
-        <data:GitRepoCollectionEntry/>
-    </UserControl.DataContext>
 
     <Grid Margin="0 40 0 0">
         <ListBox x:Name="RepoListBox" WindowChrome.IsHitTestVisibleInChrome="True"

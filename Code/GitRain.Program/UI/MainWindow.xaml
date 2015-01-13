@@ -7,10 +7,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:configs="clr-namespace:Cvte.GitRain.Configs"
         mc:Ignorable="d" Title="Git Rain"
         MinWidth="400" MinHeight="240" Width="960" Height="640"
         BorderBrush="{DynamicResource Theme.Brush.Accent}"
-        SnapsToDevicePixels="True">
+        SnapsToDevicePixels="True"
+        Closing="OnClosing">
     <FrameworkElement.Resources>
         <ui:GitRepoToDetalConverter x:Key="RepoDetailConverter"/>
         <w:VisibilityConverter x:Key="BooleanToReversedVisibilityConverter">
@@ -40,6 +42,14 @@
     </WindowChrome.WindowChrome>
 
     <Grid>
+        <ui:BingImageControl Opacity="{Binding Opacity, Mode=OneTime}"
+                             DataContext="{Binding BingImage, Source={x:Static configs:UserConfig.Instance}, Mode=OneTime}">
+            <ui:BingImageControl.Effect>
+                <BlurEffect Radius="{Binding BingImage.BlurRadius, Source={x:Static configs:UserConfig.Instance}, Mode=OneTime}"
+                            RenderingBias="Quality" KernelType="Gaussian"/>
+            </ui:BingImageControl.Effect>
+        </ui:BingImageControl>
+        
         <StackPanel Orientation="Horizontal" Panel.ZIndex="1" Margin="0 -4 0 0" HorizontalAlignment="Right" VerticalAlignment="Top">
             <wc:CaptionButton Content="i" FontSize="18" Padding="0 4 0 0" FontFamily="Sitka Text" FontWeight="Medium"/>
             <wc:SystemButtons/>
@@ -66,7 +76,7 @@
                 <ui:GitRepoPanel x:Name="GitRepoPanel" DataContext="{Binding SelectedRepo, Converter={StaticResource RepoDetailConverter}, ElementName=RepoListPanel}"
                                  Visibility="{Binding SelectedRepo, ElementName=RepoListPanel, TargetNullValue={x:Static Visibility.Collapsed}}"/>
 
-                <ui:GitOperationPanel Visibility="{Binding IsVisible, Converter={StaticResource BooleanToReversedVisibilityConverter}, ElementName=GitRepoPanel, Mode=OneWay}"/>
+                <ui:GitOperationPanel d:IsHidden="True" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToReversedVisibilityConverter}, ElementName=GitRepoPanel, Mode=OneWay}"/>
             </Grid>
 
             <GridSplitter Grid.Column="0" Width="4"

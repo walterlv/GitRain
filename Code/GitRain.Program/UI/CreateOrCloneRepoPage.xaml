@@ -11,9 +11,10 @@
 
     <FrameworkElement.Resources>
         <!-- ReSharper disable Xaml.RedundantResource -->
-        <system:String x:Key="Clone">克隆</system:String>
-        <system:String x:Key="Create">创建</system:String>
-        <system:String x:Key="Add">加入</system:String>
+        <system:String x:Key="Clone">克隆远程仓库</system:String>
+        <system:String x:Key="Create">创建本地仓库</system:String>
+        <system:String x:Key="Add">将此仓库加入管理</system:String>
+        <system:String x:Key="Exist">转到仓库设置</system:String>
         <!-- ReSharper restore Xaml.RedundantResource -->
 
         <ui:TextBoxTextToGitCloneParameterConverter x:Key="GitCloneParameterConverter"/>
@@ -71,7 +72,7 @@
         </Grid>
 
         <Button x:Name="CloneButton" Grid.Row="3" Grid.Column="1"
-                Content="{StaticResource Clone}" MaxWidth="120" Height="32"
+                Content="{StaticResource Add}" MaxWidth="120" Height="32"
                 Command="{Binding CloneOrCreateRepoCommand}">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource GitCloneParameterConverter}">

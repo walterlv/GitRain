@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- This is a sample config file -->
+<configuration>
+  <App>
+    <!-- Recent repo list. The first one will be displayed while GitRain starts. -->
+    <RecentRepoList>
+      <Item Id="0"/>
+    </RecentRepoList>
+    
+    <!-- Git exe list. This section contains any installed git exe and other tools. -->
+    <GitExecutableList>
+      <Git Id="msysgit" Path=""/>
+      <Git Id="TortoiseGit" Path=""/>
+      <Git Id="GitHub" Path=""/>
+      <Git Id="GitBash" Path=""/>
+      <Git Id="SourceTree" Path=""/>
+      <Tool Type="Compair" Path=""/>
+      <Tool Type="Conflict" Path=""/>
+    </GitExecutableList>
+  </App>
+  
+  <User>
+    <!-- Git repo list. These repos will be displayed in the GitRain repoList. -->
+    <!-- Star attribute indicate that whether a repo should be listed in the top of the list. -->
+    <GitRepoList>
+      <Repo Id="0" Star="True" Alias="GitRain" RepoName="GitRain" LocalPath=""/>
+      <Repo Id="1" Star="True" Alias="MetroRadiance" RepoName="MetroRadiance" LocalPath=""/>
+      <Repo Id="2" Star="True" Alias="miracle" RepoName="miracle" LocalPath=""/>
+      <Repo Id="3" Star="False" Alias="sheet-data" RepoName="sheet-data" LocalPath=""/>
+      <Repo Id="4" Star="False" Alias="vs-command-executor" RepoName="vs-command-executor" LocalPath=""/>
+    </GitRepoList>
+    
+    <!-- Remote list. UserName/Password/Email will be saved by each host. -->
+    <RemoteList>
+      <Remote host="github.com" Name="walterlv" Password="xxxxx" GitName="walterlv" GitEmail="xblero@gmail.com"/>
+    </RemoteList>
+  </User>
+
+  <UI>
+    <BackgroundImage>
+      <BingImage Url="" Folder="" RecentImage=""
+                 ImageUrlPattern=""
+                 ImageFileNamePattern=""/>
+    </BackgroundImage>
+  </UI>
+</configuration>

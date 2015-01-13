@@ -1,0 +1,38 @@
+﻿<UserControl x:Name="ThisControl" x:Class="Cvte.GitRain.UI.BingImageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
+             BorderBrush="White">
+    <UserControl.Resources>
+        <Storyboard x:Key="FadeOutTempBackgroundStoryboard" FillBehavior="Stop" Completed="OnFadeOutStoryboardCompleted">
+            <DoubleAnimation Storyboard.TargetName="TempBackgroundBorder" Storyboard.TargetProperty="Opacity"
+                             To="1" Duration="0:0:2">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="ReportErrorStoryboard" FillBehavior="Stop">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="ThisControl" Storyboard.TargetProperty="BorderThickness">
+                <LinearThicknessKeyFrame KeyTime="0:0:0.4" Value="4"/>
+                <LinearThicknessKeyFrame KeyTime="0:0:2.4" Value="4"/>
+                <LinearThicknessKeyFrame KeyTime="0:0:5" Value="0"/>
+            </ThicknessAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetName="ThisControl" Storyboard.TargetProperty="(UserControl.BorderBrush).(SolidColorBrush.Color)">
+                <LinearColorKeyFrame KeyTime="0:0:0.4" Value="OrangeRed"/>
+                <LinearColorKeyFrame KeyTime="0:0:1.0" Value="GhostWhite"/>
+                <LinearColorKeyFrame KeyTime="0:0:1.4" Value="OrangeRed"/>
+                <LinearColorKeyFrame KeyTime="0:0:2.0" Value="GhostWhite"/>
+                <LinearColorKeyFrame KeyTime="0:0:2.8" Value="OrangeRed"/>
+                <LinearColorKeyFrame KeyTime="0:0:5" Value="GhostWhite"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <Border x:Name="TempBackgroundBorder" Opacity="0">
+        <Border.Background>
+            <ImageBrush x:Name="TempBackgroundImageBrush" Stretch="UniformToFill"/>
+        </Border.Background>
+    </Border>
+</UserControl>

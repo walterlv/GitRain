@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
+using Cvte.GitRain.Configs;
 using Cvte.GitRain.Data;
 
 namespace Cvte.GitRain.UI
@@ -18,6 +19,12 @@ namespace Cvte.GitRain.UI
         private void RepoListPanel_Selected(object sender, EventArgs e)
         {
             GitGlobalPanel.Clear();
+        }
+
+        private void OnClosing(object sender, CancelEventArgs e)
+        {
+            Hide();
+            UserConfig.Instance.Save();
         }
     }
 

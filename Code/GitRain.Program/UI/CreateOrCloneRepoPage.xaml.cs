@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Threading;
 using Cvte.GitRain.Data;
+using Cvte.GitRain.Git;
 
 namespace Cvte.GitRain.UI
 {
@@ -14,6 +15,7 @@ namespace Cvte.GitRain.UI
         private string _clone;
         private string _create;
         private string _add;
+        private string _exist;
 
         public CreateOrCloneRepoPage()
         {
@@ -21,6 +23,7 @@ namespace Cvte.GitRain.UI
             _timer.Tick += Timer_Tick;
             InitializeComponent();
             Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -28,19 +31,34 @@ namespace Cvte.GitRain.UI
             _clone = (string)FindResource("Clone");
             _create = (string)FindResource("Create");
             _add = (string)FindResource("Add");
+            _exist = (string)FindResource("Exist");
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            _timer.IsEnabled = false;
         }
 
         private void OnAnyTextChanged(object sender, TextChangedEventArgs e)
         {
-            _timer.Stop();
-            _timer.Start();
+            if (IsLoaded)
+            {
+                _timer.Stop();
+                _timer.Start();
+            }
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             _timer.IsEnabled = false;
 
-            if (CheckLocalDirectoryIsGitRepo(LocalPathTextBox.Text.Trim()))
+            if (GitRepoCollectionEntry.Instance.Contains(LocalPathTextBox.Text.Trim()))
+            {
+                CloneButton.Content = _exist;
+                return;
+            }
+
+            if (GitHelper.CheckDirectoryIsGitRepo(LocalPathTextBox.Text.Trim()))
             {
                 CloneButton.Content = _add;
                 return;
@@ -53,11 +71,6 @@ namespace Cvte.GitRain.UI
             }
 
             CloneButton.Content = _create;
-        }
-
-        private static bool CheckLocalDirectoryIsGitRepo(string path)
-        {
-            return false;
         }
     }
 
