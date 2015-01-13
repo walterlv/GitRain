@@ -229,7 +229,7 @@
     <Folder Include="Cmd\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ConfigSample.xml" />
+    <None Include="ConfigSample.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
