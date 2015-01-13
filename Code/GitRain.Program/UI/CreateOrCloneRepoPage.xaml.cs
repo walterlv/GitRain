@@ -52,15 +52,22 @@ namespace Cvte.GitRain.UI
         {
             _timer.IsEnabled = false;
 
-            if (GitRepoCollectionEntry.Instance.Contains(LocalPathTextBox.Text.Trim()))
+            string remoteText = UrlTextBox.Text.Trim();
+            string localText = LocalPathTextBox.Text.Trim();
+
+            if (String.IsNullOrEmpty(localText))
             {
-                CloneButton.Content = _exist;
-                CloneTipTextBlock.Text = (string) FindResource("ExistTip");
+                CloneButton.Content = _clone;
+                CloneTipTextBlock.Text = String.Empty;
                 return;
             }
 
-            string remoteText = UrlTextBox.Text.Trim();
-            string localText = LocalPathTextBox.Text.Trim();
+            if (GitRepoCollectionEntry.Instance.Contains(localText))
+            {
+                CloneButton.Content = _exist;
+                CloneTipTextBlock.Text = (string)FindResource("ExistTip");
+                return;
+            }
 
             bool isRemoteValid = !String.IsNullOrEmpty(remoteText);
             bool isGitRepo = GitHelper.CheckDirectoryIsGitRepo(localText);

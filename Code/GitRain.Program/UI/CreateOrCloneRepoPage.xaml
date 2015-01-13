@@ -71,8 +71,7 @@
             <TextBox x:Name="LocalPathTextBox" Grid.Row="1" Grid.Column="1"
                      TextChanged="OnAnyTextChanged"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="仓库名字:"/>
-            <TextBox x:Name="AliasTextBox" Grid.Row="2" Grid.Column="1"
-                     TextChanged="OnAnyTextChanged"/>
+            <TextBox x:Name="AliasTextBox" Grid.Row="2" Grid.Column="1"/>
             <TextBlock x:Name="CloneTipTextBlock" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                        TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis"
                        HorizontalAlignment="Center" FontSize="24" FontWeight="Thin"
