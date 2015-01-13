@@ -94,6 +94,7 @@
       <DependentUpon>BingImageControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Controls\SystemButtons.cs" />
+    <Compile Include="Windows\FirstNotNullConverter.cs" />
     <Compile Include="Windows\VisibilityConverter.cs" />
     <Compile Include="Windows\WindowExtensions.cs" />
     <Compile Include="Windows\Controls\CaptionButton.cs" />

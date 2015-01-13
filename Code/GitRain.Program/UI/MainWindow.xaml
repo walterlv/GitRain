@@ -12,7 +12,7 @@
         MinWidth="400" MinHeight="240" Width="960" Height="640"
         BorderBrush="{DynamicResource Theme.Brush.Accent}"
         SnapsToDevicePixels="True"
-        Closing="OnClosing">
+        Loaded="OnLoaded" Closing="OnClosing">
     <FrameworkElement.Resources>
         <ui:GitRepoToDetalConverter x:Key="RepoDetailConverter"/>
         <w:VisibilityConverter x:Key="BooleanToReversedVisibilityConverter">
@@ -42,10 +42,10 @@
     </WindowChrome.WindowChrome>
 
     <Grid>
-        <ui:BingImageControl Opacity="{Binding Opacity, Mode=OneTime}"
-                             DataContext="{Binding BingImage, Source={x:Static configs:UserConfig.Instance}, Mode=OneTime}">
+        <ui:BingImageControl Opacity="{Binding Opacity, Mode=OneWay}"
+                             DataContext="{Binding BingImage, Source={x:Static configs:UserConfig.Instance}, Mode=OneWay}">
             <ui:BingImageControl.Effect>
-                <BlurEffect Radius="{Binding BingImage.BlurRadius, Source={x:Static configs:UserConfig.Instance}, Mode=OneTime}"
+                <BlurEffect Radius="{Binding BingImage.BlurRadius, Source={x:Static configs:UserConfig.Instance}, Mode=OneWay}"
                             RenderingBias="Quality" KernelType="Gaussian"/>
             </ui:BingImageControl.Effect>
         </ui:BingImageControl>

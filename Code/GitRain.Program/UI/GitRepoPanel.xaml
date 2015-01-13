@@ -6,6 +6,7 @@
              xmlns:data="clr-namespace:Cvte.GitRain.Data"
              xmlns:cd="clr-namespace:Cvte.GitRain.Designing"
              xmlns:ui="clr-namespace:Cvte.GitRain.UI"
+             xmlns:windows="clr-namespace:Cvte.GitRain.Windows"
              mc:Ignorable="d cd" d:DesignWidth="800" d:DesignHeight="540"
              Foreground="{DynamicResource Theme.Brush.Foreground}">
     
@@ -26,10 +27,15 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock FontSize="48" Margin="8 -64 4 0"
-                       Text="{Binding RepoName}" FontWeight="Thin"
-                       VerticalAlignment="Bottom"
-                       TextTrimming="CharacterEllipsis"/>
+            <TextBlock FontSize="48" Margin="8 -64 4 0" FontWeight="Thin"
+                       VerticalAlignment="Bottom" TextTrimming="CharacterEllipsis">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{x:Static windows:FirstNotNullConverter.Default}">
+                        <Binding Path="RepoName"/>
+                        <Binding Path="Alias"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
             <ui:SyncRepoButton Grid.Column="1"/>
         </Grid>
 

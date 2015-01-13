@@ -21,6 +21,11 @@ namespace Cvte.GitRain.UI
             GitGlobalPanel.Clear();
         }
 
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            UserConfig.Instance.Load();
+        }
+
         private void OnClosing(object sender, CancelEventArgs e)
         {
             Hide();

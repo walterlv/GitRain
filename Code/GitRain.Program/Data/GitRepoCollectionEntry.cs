@@ -9,14 +9,24 @@ namespace Cvte.GitRain.Data
     public class GitRepoCollectionEntry : NotificationObject
     {
         public static GitRepoCollectionEntry Instance = new GitRepoCollectionEntry();
-
         private readonly ObservableCollection<GitRepoEntry> _gitRepos;
-        public ReadOnlyObservableCollection<GitRepoEntry> Repos { get; private set; }
+        private int _index;
+
+        public int Index
+        {
+            get { return _index; }
+            set { SetProperty(ref _index, value); }
+        }
+
+        public ObservableCollection<GitRepoEntry> Repos
+        {
+            get { return _gitRepos; }
+        }
 
         private GitRepoCollectionEntry()
         {
             _gitRepos = new ObservableCollection<GitRepoEntry>();
-            Repos = new ReadOnlyObservableCollection<GitRepoEntry>(_gitRepos);
+            _index = -1;
         }
 
         public bool Contains(string dir)

@@ -11,7 +11,6 @@ namespace Cvte.GitRain.Configs
     {
         public static UserConfig Instance = new UserConfig();
 
-        public GitRepoEntry RecentRepo { get; private set; }
         public BingImageEntry BingImage { get; private set; }
 
         private readonly string _userConfigDirectory;
@@ -23,10 +22,10 @@ namespace Cvte.GitRain.Configs
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "GitRain", "User");
             _localFileName = Path.Combine(_userConfigDirectory, "Config.xml");
-            Load();
+            BingImage = new BingImageEntry();
         }
 
-        private void Load()
+        public void Load()
         {
             if (!Directory.Exists(_userConfigDirectory))
             {
@@ -45,8 +44,8 @@ namespace Cvte.GitRain.Configs
                 {
                     var document = XDocument.Load(stream);
                     XElement root = document.Root;
-                    LoadApp(root);
                     LoadUser(root);
+                    LoadApp(root);
                     LoadUI(root);
                 }
                 catch (XmlException)
@@ -80,8 +79,8 @@ namespace Cvte.GitRain.Configs
                     document = new XDocument(new XElement("configuration"));
                 }
                 XElement root = document.Root;
-                SaveApp(root);
                 SaveUser(root);
+                SaveApp(root);
                 SaveUI(root);
                 document.Save(stream);
             }
@@ -89,12 +88,15 @@ namespace Cvte.GitRain.Configs
 
         private void LoadDefault()
         {
-            BingImage = new BingImageEntry();
         }
 
         private void LoadApp(XElement root)
         {
-
+            XElement recentRepoElement = GetElement(root, "App", "RecentRepoList", "Item");
+            if (recentRepoElement != null)
+            {
+                GlobalCommands.BackToRepo.Execute(Int32.Parse(recentRepoElement.Attribute("Id").Value));
+            }
         }
 
         private void LoadUser(XElement root)
@@ -106,7 +108,6 @@ namespace Cvte.GitRain.Configs
                     .Select(x => new GitRepoEntry
                     {
                         LocalDirectory = x.Attribute("LocalPath").Value,
-                        RepoName = x.Attribute("RepoName").Value,
                         Alias = x.Attribute("Alias").Value,
                         IsStared = Boolean.Parse(x.Attribute("Star").Value),
                     }));
@@ -116,33 +117,33 @@ namespace Cvte.GitRain.Configs
         private void LoadUI(XElement root)
         {
             XElement imageElement = GetElement(root, "UI", "BackgroundImage", "BingImage");
-            BingImage = imageElement == null
-                ? new BingImageEntry()
-                : new BingImageEntry
-                {
-                    Url = imageElement.Attribute("Url").Value,
-                    Folder = imageElement.Attribute("Folder").Value,
-                    RecentImage = imageElement.Attribute("RecentImage").Value,
-                    ImageUrlPattern = imageElement.Attribute("ImageUrlPattern").Value,
-                    ImageFileNamePattern = imageElement.Attribute("ImageFileNamePattern").Value
-                };
+            if (imageElement != null)
+            {
+                BingImage.Url = imageElement.Attribute("Url").Value;
+                BingImage.Folder = imageElement.Attribute("Folder").Value;
+                BingImage.RecentImage = imageElement.Attribute("RecentImage").Value;
+                BingImage.ImageUrlPattern = imageElement.Attribute("ImageUrlPattern").Value;
+                BingImage.ImageFileNamePattern = imageElement.Attribute("ImageFileNamePattern").Value;
+            }
         }
 
         private void SaveApp(XElement root)
         {
-
+            XElement recentRepoElement = GetOrCreateElement(root, "App", "RecentRepoList", "Item");
+            recentRepoElement.SetAttributeValue("Id", GitRepoCollectionEntry.Instance.Index);
         }
 
         private void SaveUser(XElement root)
         {
             XElement repoListElement = GetOrCreateElement(root, "User", "GitRepoList");
             repoListElement.RemoveAll();
+            int index = 0;
             foreach (GitRepoEntry entry in GitRepoCollectionEntry.Instance.Repos)
             {
                 XElement childElement = new XElement("Repo");
+                childElement.SetAttributeValue("Id", index++);
                 childElement.SetAttributeValue("Star", entry.IsStared);
                 childElement.SetAttributeValue("Alias", entry.Alias);
-                childElement.SetAttributeValue("RepoName", entry.RepoName);
                 childElement.SetAttributeValue("LocalPath", entry.LocalDirectory);
                 repoListElement.Add(childElement);
             }

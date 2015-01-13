@@ -15,14 +15,28 @@ namespace Cvte.GitRain
         {
             if (key == null) throw new ArgumentNullException("key");
             if (action == null) throw new ArgumentNullException("action");
-            CommandDictionary1[key] += action;
+            if (CommandDictionary1.ContainsKey(key))
+            {
+                CommandDictionary1[key] += action;
+            }
+            else
+            {
+                CommandDictionary1[key] = action;
+            }
         }
 
         public static void Register([NotNull] string key, [NotNull] Action<object> action)
         {
             if (key == null) throw new ArgumentNullException("key");
             if (action == null) throw new ArgumentNullException("action");
-            CommandDictionary2[key] += action;
+            if (CommandDictionary2.ContainsKey(key))
+            {
+                CommandDictionary2[key] += action;
+            }
+            else
+            {
+                CommandDictionary2[key] = action;
+            }
         }
 
         public static void Unregister([NotNull] string key, [NotNull] Action action)

@@ -92,6 +92,7 @@
                     <MultiBinding.Bindings>
                         <Binding ElementName="UrlTextBox" Path="Text"/>
                         <Binding ElementName="LocalPathTextBox" Path="Text"/>
+                        <Binding ElementName="AliasTextBox" Path="Text"/>
                     </MultiBinding.Bindings>
                 </MultiBinding>
             </Button.CommandParameter>

@@ -12,8 +12,9 @@ namespace Cvte.GitRain.Data
 
         public GitRepoDetailEntry(GitRepoEntry entry) : this()
         {
-            RepoName = entry.RepoName;
+            Alias = entry.Alias;
             LocalDirectory = entry.LocalDirectory;
+            IsStared = entry.IsStared;
 
             // 以下句子临时使用。
             HaveContentToSync = true;
@@ -21,6 +22,13 @@ namespace Cvte.GitRain.Data
 
         private bool _haveContentToSync;
         private ICommand _syncCommand;
+        private string _repoName;
+
+        public string RepoName
+        {
+            get { return _repoName; }
+            set { SetProperty(ref _repoName, value); }
+        }
 
         public bool HaveContentToSync
         {

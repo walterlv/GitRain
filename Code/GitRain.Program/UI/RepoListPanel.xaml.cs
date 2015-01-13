@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Cvte.GitRain.Data;
@@ -9,6 +10,7 @@ namespace Cvte.GitRain.UI
     {
         public RepoListPanel()
         {
+            GlobalCommand.Register(GlobalCommands.BackToRepo.Key, OnBackHere);
             InitializeComponent();
             Loaded += OnLoaded;
             GlobalCommand.AnyExecuted += GlobalCommand_AnyExecuted;
@@ -20,7 +22,7 @@ namespace Cvte.GitRain.UI
             {
                 GlobalCommands.GitCreateOrCloneRepo.Execute(null);
             }
-            else
+            else if (RepoListBox.SelectedIndex < 0)
             {
                 RepoListBox.SelectedIndex = 0;
             }
@@ -32,11 +34,36 @@ namespace Cvte.GitRain.UI
             {
                 RepoListBox.SelectedIndex = -1;
             }
-            else if (e.Key.StartsWith("Back"))
+        }
+
+        private void OnBackHere(object o)
+        {
+            if (o == null)
             {
-                if (_lastSelectedIndex >= 0)
+                if (GitRepoCollectionEntry.Instance.Index >= 0)
                 {
-                    RepoListBox.SelectedIndex = _lastSelectedIndex;
+                    RepoListBox.SelectedIndex = GitRepoCollectionEntry.Instance.Index;
+                }
+            }
+            else if (o is Int32)
+            {
+                int value = (int) o;
+                if (value >= -1 && value < RepoListBox.Items.Count)
+                {
+                    RepoListBox.SelectedIndex = value;
+                }
+            }
+            else if (o is GitRepoEntry)
+            {
+                if (RepoListBox.Items.Contains(o))
+                {
+                    RepoListBox.SelectedItem = o;
+                }
+                else
+                {
+                    GitRepoEntry entry = (GitRepoEntry) o;
+                    RepoListBox.SelectedItem = RepoListBox.Items.OfType<GitRepoEntry>()
+                        .FirstOrDefault(x => x.LocalDirectory == entry.LocalDirectory);
                 }
             }
         }
@@ -55,7 +82,7 @@ namespace Cvte.GitRain.UI
         {
             if (RepoListBox.SelectedIndex >= 0)
             {
-                _lastSelectedIndex = RepoListBox.SelectedIndex;
+                GitRepoCollectionEntry.Instance.Index = RepoListBox.SelectedIndex;
             }
             if (e.AddedItems.Count > 0)
             {
@@ -65,10 +92,8 @@ namespace Cvte.GitRain.UI
 
         public void Reselect()
         {
-            RepoListBox.SelectedIndex = _lastSelectedIndex;
+            RepoListBox.SelectedIndex = GitRepoCollectionEntry.Instance.Index;
         }
-
-        private int _lastSelectedIndex = -1;
 
         public event EventHandler Selected;
 
