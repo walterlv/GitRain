@@ -6,6 +6,7 @@
       xmlns:system="clr-namespace:System;assembly=mscorlib"
       xmlns:ui="clr-namespace:Cvte.GitRain.UI"
       xmlns:data="clr-namespace:Cvte.GitRain.Data"
+      xmlns:windows="clr-namespace:Cvte.GitRain.Windows"
       mc:Ignorable="d" d:DesignWidth="540" d:DesignHeight="540"
       Title="新建或克隆仓库" DataContext="{x:Static data:GitGlobalEntry.Instance}">
 
@@ -15,9 +16,15 @@
         <system:String x:Key="Create">创建本地仓库</system:String>
         <system:String x:Key="Add">将此仓库加入管理</system:String>
         <system:String x:Key="Exist">转到仓库设置</system:String>
+        <system:String x:Key="CannotCloneTip">不能在这里克隆 Git 仓库，因为这个文件夹不是空的。</system:String>
+        <system:String x:Key="CannotCreateTip">不能在这个文件夹</system:String>
+        <system:String x:Key="AddTip">这已经是一个 Git 仓库了，现在可立即加入管理。</system:String>
+        <system:String x:Key="ExistTip">这个仓库已经加入了管理，无需克隆。</system:String>
         <!-- ReSharper restore Xaml.RedundantResource -->
 
         <ui:TextBoxTextToGitCloneParameterConverter x:Key="GitCloneParameterConverter"/>
+        <windows:VisibilityConverter x:Key="EmptyStringToVisibleConverter" Visible="{x:Static system:String.Empty}"
+                                     DefaultVisibility="Collapsed"/>
         
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="18"/>
@@ -35,7 +42,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="6*" MinHeight="108"/>
+            <RowDefinition Height="6*" MinHeight="116"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*" MinHeight="48"/>
             <RowDefinition Height="*"/>
@@ -50,6 +57,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -58,17 +66,23 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="源路径 / URL:"/>
             <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1"
-                     Text="https://github.com/walterlv/GitRain.git"
                      TextChanged="OnAnyTextChanged"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="本地路径:"/>
             <TextBox x:Name="LocalPathTextBox" Grid.Row="1" Grid.Column="1"
-                     Text="C:\Users\lvyi\Documents\Codes\GitRain"
                      TextChanged="OnAnyTextChanged"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Opacity="0.33"
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="仓库名字:"/>
+            <TextBox x:Name="AliasTextBox" Grid.Row="2" Grid.Column="1"
+                     TextChanged="OnAnyTextChanged"/>
+            <TextBlock x:Name="CloneTipTextBlock" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                       TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis"
+                       HorizontalAlignment="Center" FontSize="24" FontWeight="Thin"
+                       Foreground="{DynamicResource Theme.Brush.Accent}"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Opacity="0.33"
                        TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis"
                        HorizontalAlignment="Center" FontSize="24" FontWeight="Thin"
                        Foreground="{DynamicResource Theme.Brush.Accent}"
-                       Text="如果你只需要创建一个本地仓库，请将 URL 留空。"/>
+                       Text="如果你只需要创建一个本地仓库，可将 URL 留空。"
+                       Visibility="{Binding Text, Converter={StaticResource EmptyStringToVisibleConverter}, ElementName=CloneTipTextBlock}"/>
         </Grid>
 
         <Button x:Name="CloneButton" Grid.Row="3" Grid.Column="1"
