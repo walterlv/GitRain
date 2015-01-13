@@ -64,7 +64,7 @@
     <Grid Margin="0 40 0 0">
         <ListBox x:Name="RepoListBox" WindowChrome.IsHitTestVisibleInChrome="True"
                  BorderThickness="0" Padding="0" Background="{x:Null}"
-		     	 ItemsSource="{Binding Repos}" SelectedIndex="0"
+		     	 ItemsSource="{Binding Repos}"
                  SelectedItem="{Binding SelectedRepo, Mode=OneWayToSource, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:RepoListPanel}}}"
 		    	 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 		    	 ScrollViewer.VerticalScrollBarVisibility="Auto"

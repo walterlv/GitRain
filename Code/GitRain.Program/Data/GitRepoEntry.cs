@@ -7,6 +7,8 @@ namespace Cvte.GitRain.Data
     {
         private string _repoName;
         private string _localDirectory;
+        private bool _isStared;
+        private string _alias;
 
         public string RepoName
         {
@@ -20,19 +22,16 @@ namespace Cvte.GitRain.Data
             set { SetProperty(ref _localDirectory, value); }
         }
 
-        public GitRepoEntry()
+        public bool IsStared
         {
+            get { return _isStared; }
+            set { SetProperty(ref _isStared, value); }
         }
 
-        public GitRepoEntry(string directory)
+        public string Alias
         {
-            _localDirectory = directory;
-        }
-
-        internal GitRepoEntry(string name, string directory)
-        {
-            _repoName = name;
-            _localDirectory = directory;
+            get { return _alias; }
+            set { SetProperty(ref _alias, value); }
         }
     }
 }

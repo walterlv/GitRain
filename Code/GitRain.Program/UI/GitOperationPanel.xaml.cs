@@ -23,6 +23,9 @@ namespace Cvte.GitRain.UI
             {
                 GitFrame.Content = new GitConfigPage();
             }
+            else if (e.Key == GlobalCommands.BackToRepo.Key)
+            {
+            }
             else
             {
                 GitFrame.Content = new TextBlock

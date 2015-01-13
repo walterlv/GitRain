@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -16,7 +17,6 @@ namespace Cvte.GitRain.Data
         {
             _gitRepos = new ObservableCollection<GitRepoEntry>();
             Repos = new ReadOnlyObservableCollection<GitRepoEntry>(_gitRepos);
-            LoadAllFromUserFile();
         }
 
         public bool Contains(string dir)
@@ -24,13 +24,13 @@ namespace Cvte.GitRain.Data
             return _gitRepos.Any(x => x.LocalDirectory == dir);
         }
 
-        private void LoadAllFromUserFile()
+        public void Reload(IEnumerable<GitRepoEntry> entries)
         {
-            _gitRepos.Add(new GitRepoEntry("GitRain", ""));
-            _gitRepos.Add(new GitRepoEntry("MetroRadiance", ""));
-            _gitRepos.Add(new GitRepoEntry("miracle", ""));
-            _gitRepos.Add(new GitRepoEntry("sheet-data", ""));
-            _gitRepos.Add(new GitRepoEntry("vs-command-executor", ""));
+            _gitRepos.Clear();
+            foreach (GitRepoEntry entry in entries)
+            {
+                _gitRepos.Add(entry);
+            }
         }
 
         private void VerifyAllAsync()

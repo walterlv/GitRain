@@ -10,7 +10,20 @@ namespace Cvte.GitRain.UI
         public RepoListPanel()
         {
             InitializeComponent();
+            Loaded += OnLoaded;
             GlobalCommand.AnyExecuted += GlobalCommand_AnyExecuted;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (RepoListBox.Items.Count == 0)
+            {
+                GlobalCommands.GitCreateOrCloneRepo.Execute(null);
+            }
+            else
+            {
+                RepoListBox.SelectedIndex = 0;
+            }
         }
 
         private void GlobalCommand_AnyExecuted(object sender, GlobalCommandEventArgs e)
@@ -21,7 +34,10 @@ namespace Cvte.GitRain.UI
             }
             else if (e.Key.StartsWith("Back"))
             {
-                RepoListBox.SelectedIndex = _lastSelectedIndex;
+                if (_lastSelectedIndex >= 0)
+                {
+                    RepoListBox.SelectedIndex = _lastSelectedIndex;
+                }
             }
         }
 
@@ -52,7 +68,7 @@ namespace Cvte.GitRain.UI
             RepoListBox.SelectedIndex = _lastSelectedIndex;
         }
 
-        private int _lastSelectedIndex;
+        private int _lastSelectedIndex = -1;
 
         public event EventHandler Selected;
 
