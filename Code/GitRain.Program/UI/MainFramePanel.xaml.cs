@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace Cvte.GitRain.UI
 {
-    public partial class MainPage : Page
+    public partial class MainFramePanel : UserControl
     {
-        public MainPage()
+        public MainFramePanel()
         {
             InitializeComponent();
         }

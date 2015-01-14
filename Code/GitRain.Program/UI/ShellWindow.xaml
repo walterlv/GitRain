@@ -28,24 +28,26 @@
                       UseAeroCaptionButtons="False" CaptionHeight="72"/>
     </WindowChrome.WindowChrome>
 
-    <Grid>
-        <ui:BingImageControl Opacity="{Binding Opacity, Mode=OneWay}" IsHitTestVisible="False"
-                             DataContext="{Binding BingImage, Source={x:Static configs:UserConfig.Instance}, Mode=OneWay}">
-            <ui:BingImageControl.Effect>
-                <BlurEffect Radius="{Binding BingImage.BlurRadius, Source={x:Static configs:UserConfig.Instance}, Mode=OneWay}"
-                            RenderingBias="Quality" KernelType="Gaussian"/>
-            </ui:BingImageControl.Effect>
-        </ui:BingImageControl>
+    <FrameworkElement.Resources>
+        <BlurEffect x:Key="BlurEffect" RenderingBias="Quality" KernelType="Gaussian"
+                    Radius="{Binding BingImage.BlurRadius, Source={x:Static configs:UserConfig.Instance}, Mode=OneWay}"/>
+    </FrameworkElement.Resources>
 
+    <Grid>
+        <!-- 背景图 -->
+        <ui:BingImageControl Opacity="{Binding Opacity, Mode=OneWay}" Effect="{StaticResource BlurEffect}" IsHitTestVisible="False"
+                             DataContext="{Binding BingImage, Source={x:Static configs:UserConfig.Instance}, Mode=OneWay}"/>
+
+        <!-- 窗口按钮 -->
         <StackPanel Orientation="Horizontal" Panel.ZIndex="1" Margin="0 -4 0 0" HorizontalAlignment="Right" VerticalAlignment="Top">
             <wc:CaptionButton Content="i" FontSize="18" Padding="0 4 0 0" FontFamily="Sitka Text" FontWeight="Medium"/>
             <wc:SystemButtons/>
         </StackPanel>
 
-        <Frame NavigationUIVisibility="Hidden">
-            <Frame.Content>
-                <ui:MainPage/>
-            </Frame.Content>
-        </Frame>
+        <!-- 主要窗口内容 -->
+        <ui:MainFramePanel Effect="{StaticResource BlurEffect}"/>
+
+        <!-- 提示窗口内容 -->
+        <ui:MessageFramePanel/>
     </Grid>
 </Window>
