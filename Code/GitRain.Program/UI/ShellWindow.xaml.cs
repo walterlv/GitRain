@@ -5,11 +5,12 @@ using Cvte.GitRain.Configs;
 
 namespace Cvte.GitRain.UI
 {
-    public partial class ShellWindow : Window
+    public partial class ShellWindow : Window, IMessageService
     {
         public ShellWindow()
         {
             InitializeComponent();
+            MessageService.Current = this;
         }
 
         private bool IsMessageDisplaying
@@ -43,7 +44,24 @@ namespace Cvte.GitRain.UI
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
-            IsMessageDisplaying = !IsMessageDisplaying;
+            if (IsMessageDisplaying)
+            {
+                IsMessageDisplaying = false;
+            }
+            else
+            {
+                MessageService.Current.Show(new MessageContent
+                {
+                    Title = "GitRain",
+                    Content = "开发预览版，努力开发中 :)",
+                });
+            }
+        }
+
+        public void Show(MessageContent content)
+        {
+            MessageFrame.Content = new MessageControl {DataContext = content};
+            IsMessageDisplaying = true;
         }
     }
 }
