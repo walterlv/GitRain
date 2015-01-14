@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Cvte.GitRain.UI">
+    
+    <ControlTemplate x:Key="Template.Generic.MessageFrame" TargetType="{x:Type local:MessageFrame}">
+        <Border>
+            <Border.Background>
+                <SolidColorBrush Color="{DynamicResource Theme.Color.Accent}" Opacity="0.05"/>
+            </Border.Background>
+            <Border BorderThickness="0 4" MinHeight="160" VerticalAlignment="Center"
+                    BorderBrush="{DynamicResource Theme.Brush.Accent}"
+                    Background="{DynamicResource Theme.Brush.Background}">
+                <ContentPresenter ContentSource="{TemplateBinding Content}"/>
+            </Border>
+        </Border>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local:MessageFrame}">
+        <Setter Property="Template" Value="{StaticResource Template.Generic.MessageFrame}"/>
+    </Style>
+    
+</ResourceDictionary>

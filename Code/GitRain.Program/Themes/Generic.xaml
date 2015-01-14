@@ -4,6 +4,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/GitRain;component/Themes/Generic.CaptionButton.xaml"/>
         <ResourceDictionary Source="/GitRain;component/Themes/Generic.SystemButtons.xaml"/>
+        <ResourceDictionary Source="/GitRain;component/Themes/Generic.MessageFrame.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     
 </ResourceDictionary>
