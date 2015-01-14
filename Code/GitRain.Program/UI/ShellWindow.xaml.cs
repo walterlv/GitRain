@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Media.Effects;
 using Cvte.GitRain.Configs;
 
 namespace Cvte.GitRain.UI
@@ -23,6 +12,24 @@ namespace Cvte.GitRain.UI
             InitializeComponent();
         }
 
+        private bool IsMessageDisplaying
+        {
+            get { return MainFrame.Effect != null; }
+            set
+            {
+                if (value)
+                {
+                    MainFrame.Effect = (Effect) FindResource("BlurEffect");
+                    MessageFrame.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    MainFrame.Effect = null;
+                    MessageFrame.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             UserConfig.Instance.Load();
@@ -32,6 +39,11 @@ namespace Cvte.GitRain.UI
         {
             Hide();
             UserConfig.Instance.Save();
+        }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            IsMessageDisplaying = !IsMessageDisplaying;
         }
     }
 }

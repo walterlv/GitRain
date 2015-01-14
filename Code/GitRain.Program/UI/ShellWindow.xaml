@@ -40,14 +40,15 @@
 
         <!-- 窗口按钮 -->
         <StackPanel Orientation="Horizontal" Panel.ZIndex="1" Margin="0 -4 0 0" HorizontalAlignment="Right" VerticalAlignment="Top">
-            <wc:CaptionButton Content="i" FontSize="18" Padding="0 4 0 0" FontFamily="Sitka Text" FontWeight="Medium"/>
+            <wc:CaptionButton Content="i" Padding="0 4 0 0" Click="AboutButton_Click"
+                              FontSize="18" FontFamily="Sitka Text" FontWeight="Medium"/>
             <wc:SystemButtons/>
         </StackPanel>
 
         <!-- 主要窗口内容 -->
-        <ui:MainFramePanel Effect="{StaticResource BlurEffect}"/>
+        <ui:MainFramePanel x:Name="MainFrame"/>
 
         <!-- 提示窗口内容 -->
-        <ui:MessageFrame/>
+        <ui:MessageFrame x:Name="MessageFrame" Visibility="Collapsed"/>
     </Grid>
 </Window>
