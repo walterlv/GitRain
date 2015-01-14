@@ -1,0 +1,51 @@
+﻿<Window x:Class="Cvte.GitRain.UI.ShellWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="clr-namespace:Cvte.GitRain.UI"
+        xmlns:wc="clr-namespace:Cvte.GitRain.Windows.Controls"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:configs="clr-namespace:Cvte.GitRain.Configs"
+        mc:Ignorable="d" Title="Git Rain"
+        MinWidth="400" MinHeight="240" Width="960" Height="640"
+        BorderBrush="{DynamicResource Theme.Brush.Accent}"
+        SnapsToDevicePixels="True"
+        Loaded="OnLoaded" Closing="OnClosing">
+
+    <Window.Style>
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="BorderThickness" Value="0 4"/>
+            <Style.Triggers>
+                <Trigger Property="WindowState" Value="Maximized">
+                    <Setter Property="BorderThickness" Value="8"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CornerRadius="0" GlassFrameThickness="0 0 0 1"
+                      UseAeroCaptionButtons="False" CaptionHeight="72"/>
+    </WindowChrome.WindowChrome>
+
+    <Grid>
+        <ui:BingImageControl Opacity="{Binding Opacity, Mode=OneWay}" IsHitTestVisible="False"
+                             DataContext="{Binding BingImage, Source={x:Static configs:UserConfig.Instance}, Mode=OneWay}">
+            <ui:BingImageControl.Effect>
+                <BlurEffect Radius="{Binding BingImage.BlurRadius, Source={x:Static configs:UserConfig.Instance}, Mode=OneWay}"
+                            RenderingBias="Quality" KernelType="Gaussian"/>
+            </ui:BingImageControl.Effect>
+        </ui:BingImageControl>
+
+        <StackPanel Orientation="Horizontal" Panel.ZIndex="1" Margin="0 -4 0 0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <wc:CaptionButton Content="i" FontSize="18" Padding="0 4 0 0" FontFamily="Sitka Text" FontWeight="Medium"/>
+            <wc:SystemButtons/>
+        </StackPanel>
+
+        <Frame NavigationUIVisibility="Hidden">
+            <Frame.Content>
+                <ui:MainPage/>
+            </Frame.Content>
+        </Frame>
+    </Grid>
+</Window>

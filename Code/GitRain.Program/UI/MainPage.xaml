@@ -1,0 +1,55 @@
+﻿<Page x:Class="Cvte.GitRain.UI.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="clr-namespace:Cvte.GitRain.UI"
+      xmlns:w="clr-namespace:Cvte.GitRain.Windows"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:system="clr-namespace:System;assembly=mscorlib"
+      xmlns:data="clr-namespace:Cvte.GitRain.Data"
+      mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="640"
+      SnapsToDevicePixels="True"
+      ui:GitRainDesigner.EnableConfig="True">
+    
+    <FrameworkElement.Resources>
+        <data:GitRepoToDetalConverter x:Key="RepoDetailConverter"/>
+        <w:VisibilityConverter x:Key="BooleanToReversedVisibilityConverter">
+            <w:VisibilityConverter.Visible>
+                <system:Boolean>False</system:Boolean>
+            </w:VisibilityConverter.Visible>
+            <w:VisibilityConverter.Collapsed>
+                <system:Boolean>True</system:Boolean>
+            </w:VisibilityConverter.Collapsed>
+        </w:VisibilityConverter>
+    </FrameworkElement.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="49" Width="160"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ui:UserPanel Grid.Row="0"/>
+            <ui:RepoListPanel x:Name="RepoListPanel" Grid.Row="1" Selected="RepoListPanel_Selected"/>
+            <ui:GitGlobalPanel x:Name="GitGlobalPanel" Grid.Row="2"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="0 24 0 0">
+            <ui:GitRepoPanel x:Name="GitRepoPanel" DataContext="{Binding SelectedRepo, Converter={StaticResource RepoDetailConverter}, ElementName=RepoListPanel}"
+                             Visibility="{Binding SelectedRepo, ElementName=RepoListPanel, TargetNullValue={x:Static Visibility.Collapsed}}"/>
+
+            <ui:GitOperationPanel d:IsHidden="True" Visibility="{Binding IsVisible, Converter={StaticResource BooleanToReversedVisibilityConverter}, ElementName=GitRepoPanel, Mode=OneWay}"/>
+        </Grid>
+
+        <GridSplitter Grid.Column="0" Width="4"
+                      Background="Transparent" BorderThickness="0 0 1 0"
+                      BorderBrush="{DynamicResource Theme.Brush.Accent}"
+                      WindowChrome.IsHitTestVisibleInChrome="True"/>
+    </Grid>
+</Page>

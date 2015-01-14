@@ -87,6 +87,11 @@
     <Compile Include="UI\GitOperationPanel.xaml.cs">
       <DependentUpon>GitOperationPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\GitRepoToDetalConverter.cs" />
+    <Compile Include="UI\GitRainDesigner.cs" />
+    <Compile Include="UI\ShellWindow.xaml.cs">
+      <DependentUpon>ShellWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\SyncRepoButton.xaml.cs">
       <DependentUpon>SyncRepoButton.xaml</DependentUpon>
     </Compile>
@@ -162,7 +167,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\MainWindow.xaml">
+    <Page Include="UI\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -177,11 +182,15 @@
     <Compile Include="UI\GitRepoPanel.xaml.cs">
       <DependentUpon>GitRepoPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="UI\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\RepoListPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ShellWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
