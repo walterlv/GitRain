@@ -39,7 +39,15 @@
             <ui:SyncRepoButton Grid.Column="1"/>
         </Grid>
 
-        <UniformGrid Grid.Row="1" Rows="1" WindowChrome.IsHitTestVisibleInChrome="True">
+        <Border Grid.Row="2" BorderThickness="0 2 0 0" BorderBrush="{DynamicResource Theme.Brush.Accent}">
+            <Frame x:Name="Frame" NavigationUIVisibility="Hidden" Background="White">
+                <Frame.Content>
+                    <ui:RepoHomePage/>
+                </Frame.Content>
+            </Frame>
+        </Border>
+
+        <UniformGrid Grid.Row="1" Rows="1" WindowChrome.IsHitTestVisibleInChrome="True" RadioButton.Checked="RadioButton_Checked">
             <UniformGrid.Resources>
                 <Style TargetType="{x:Type RadioButton}">
                     <Setter Property="FontSize" Value="24"/>
@@ -79,14 +87,10 @@
                     </Setter>
                 </Style>
             </UniformGrid.Resources>
-            <RadioButton Content="仓库" IsChecked="True"/>
-            <RadioButton Content="历史"/>
+            <RadioButton Content="主页" Tag="Home" IsChecked="True"/>
+            <RadioButton Content="记录"/>
             <RadioButton Content="管理"/>
             <RadioButton Content="设置"/>
         </UniformGrid>
-
-        <Border Grid.Row="2" BorderThickness="0 2 0 0" BorderBrush="{DynamicResource Theme.Brush.Accent}">
-            <Frame NavigationUIVisibility="Hidden" Background="White"/>
-        </Border>
     </Grid>
 </UserControl>

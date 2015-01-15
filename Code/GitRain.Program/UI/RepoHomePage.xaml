@@ -1,0 +1,42 @@
+﻿<Page x:Class="Cvte.GitRain.UI.RepoHomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"
+      Title="主页">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="Padding" Value="16 8"/>
+            </Style>
+        </Grid.Resources>
+        
+        <TextBlock Grid.Row="0" Text="这里是一些测试用的命令" FontSize="24" Margin="16 8 16 0" FontWeight="Thin" Foreground="{DynamicResource Theme.Brush.AccentActive}"/>
+        <WrapPanel Grid.Row="1" Margin="4">
+            <Button Content="GitInit | 在此文件夹创建一个 Git 仓库"/>
+            <Button Content="git commit -m xx | 将本次修改进行提交"/>
+            <Button Content="git remote add origin xx | 新增远程源"/>
+            <Button Content="git push -u origin master | 将本地提交推送到远程源"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="2" Margin="4">
+            <Button Content="创建"/>
+            <Button Content="提交"/>
+            <Button Content="推送"/>
+        </WrapPanel>
+
+        <TextBlock Grid.Row="3" Text="这里是控制台输出" FontSize="24" Margin="16 8 16 4" FontWeight="Thin" Foreground="{DynamicResource Theme.Brush.AccentActive}"/>
+        <Border Grid.Row="4">
+            <RichTextBox x:Name="ConsoleTextBox" IsReadOnly="True" IsUndoEnabled="False" BorderBrush="{DynamicResource Theme.Brush.Accent}" BorderThickness="0 2 0 0"/>
+        </Border>
+    </Grid>
+</Page>

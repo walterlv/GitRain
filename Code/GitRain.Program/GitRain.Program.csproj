@@ -94,6 +94,9 @@
       <DependentUpon>MessageControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\MessageFrame.cs" />
+    <Compile Include="UI\RepoHomePage.xaml.cs">
+      <DependentUpon>RepoHomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ShellWindow.xaml.cs">
       <DependentUpon>ShellWindow.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\MessageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\RepoHomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
