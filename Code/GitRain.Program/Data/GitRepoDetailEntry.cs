@@ -20,9 +20,9 @@ namespace Cvte.GitRain.Data
             HaveContentToSync = true;
         }
 
+        private string _repoName;
         private bool _haveContentToSync;
         private ICommand _syncCommand;
-        private string _repoName;
 
         public string RepoName
         {
@@ -44,7 +44,7 @@ namespace Cvte.GitRain.Data
 
         private void Sync()
         {
-            GitOperator.SyncWholeRepo();
+            GitOperator.SyncWholeRepo(LocalDirectory);
         }
     }
 }

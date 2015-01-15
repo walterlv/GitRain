@@ -83,7 +83,7 @@ namespace Cvte.GitRain.Data
                 Alias = alias,
                 LocalDirectory = dir,
             });
-            // 开始执行克隆命令。
+            GitOperator.CloneRepo(url, dir);
         }
 
         private void CreateRepo(string dir, string alias)
@@ -93,7 +93,7 @@ namespace Cvte.GitRain.Data
                 Alias = alias,
                 LocalDirectory = dir,
             });
-            // 开始执行创建命令。
+            GitOperator.CreateRepo(null, dir);
         }
     }
 

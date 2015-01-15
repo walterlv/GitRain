@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Cmd\CommandExecutor.cs" />
+    <Compile Include="Cmd\CommandResult.cs" />
+    <Compile Include="Core\ResultLevel.cs" />
     <Compile Include="Core\ActionCommand.cs" />
     <Compile Include="Core\GlobalCommand.cs" />
     <Compile Include="Core\IO\Ini\IniFile.cs" />
@@ -256,9 +259,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Cmd\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="ConfigSample.xml" />
   </ItemGroup>

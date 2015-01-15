@@ -9,11 +9,11 @@ namespace Cvte.GitRain.Git
         {
             while (true)
             {
-                DirectoryInfo info = new DirectoryInfo(dir);
-                if (!info.Exists)
+                if (!Directory.Exists(dir))
                 {
                     return false;
                 }
+                DirectoryInfo info = new DirectoryInfo(dir);
                 if (File.Exists(Path.Combine(info.FullName, ".git", "config")))
                 {
                     return true;
@@ -33,11 +33,11 @@ namespace Cvte.GitRain.Git
             {
                 return false;
             }
-            DirectoryInfo info = new DirectoryInfo(dir);
-            if (!info.Exists)
+            if (!Directory.Exists(dir))
             {
                 return true;
             }
+            DirectoryInfo info = new DirectoryInfo(dir);
             if (!info.EnumerateFileSystemInfos().Any())
             {
                 return true;

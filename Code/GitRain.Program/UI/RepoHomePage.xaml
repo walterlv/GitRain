@@ -36,7 +36,7 @@
 
         <TextBlock Grid.Row="3" Text="这里是控制台输出" FontSize="24" Margin="16 8 16 4" FontWeight="Thin" Foreground="{DynamicResource Theme.Brush.AccentActive}"/>
         <Border Grid.Row="4">
-            <RichTextBox x:Name="ConsoleTextBox" IsReadOnly="True" IsUndoEnabled="False" BorderBrush="{DynamicResource Theme.Brush.Accent}" BorderThickness="0 2 0 0"/>
+            <RichTextBox x:Name="ConsoleTextBox" IsReadOnly="True" IsUndoEnabled="False" BorderBrush="{DynamicResource Theme.Brush.Accent}" BorderThickness="0 2 0 0" Loaded="ConsoleTextBox_Loaded"/>
         </Border>
     </Grid>
 </Page>

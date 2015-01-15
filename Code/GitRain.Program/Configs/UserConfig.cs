@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -12,6 +13,13 @@ namespace Cvte.GitRain.Configs
         public static UserConfig Instance = new UserConfig();
 
         public BingImageEntry BingImage { get; private set; }
+
+        private GitExecutables _executables;
+
+        public GitExecutables Executable
+        {
+            get { return _executables ?? (_executables = new GitExecutables()); }
+        }
 
         private readonly string _userConfigDirectory;
         private readonly string _localFileName;
@@ -79,9 +87,9 @@ namespace Cvte.GitRain.Configs
                     document = new XDocument(new XElement("configuration"));
                 }
                 XElement root = document.Root;
-                SaveUser(root);
                 SaveApp(root);
                 SaveUI(root);
+                SaveUser(root);
                 document.Save(stream);
             }
         }
@@ -96,6 +104,20 @@ namespace Cvte.GitRain.Configs
             if (recentRepoElement != null)
             {
                 GlobalCommands.BackToRepo.Execute(Int32.Parse(recentRepoElement.Attribute("Id").Value));
+            }
+            XElement gitListElement = GetElement(root, "App", "GitExecutableList");
+            if (gitListElement != null)
+            {
+                gitListElement.Elements("Git").ForEach(x =>
+                {
+                    string path = x.Attribute("Path").Value;
+                    switch (x.Attribute("Id").Value)
+                    {
+                        case "msysgit":
+                            Executable.Msysgit = path;
+                            break;
+                    }
+                });
             }
         }
 
@@ -131,6 +153,20 @@ namespace Cvte.GitRain.Configs
         {
             XElement recentRepoElement = GetOrCreateElement(root, "App", "RecentRepoList", "Item");
             recentRepoElement.SetAttributeValue("Id", GitRepoCollectionEntry.Instance.Index);
+
+            XElement gitListElement = GetOrCreateElement(root, "App", "GitExecutableList");
+            gitListElement.RemoveAll();
+            List<XElement> gitList = new List<XElement>();
+            for (int i = 0; i < 1; i++)
+            {
+                gitList.Add(new XElement("Git"));
+            }
+            gitList[0].SetAttributeValue("Id", "msysgit");
+            gitList[0].SetAttributeValue("Path", Executable.Msysgit);
+            foreach (XElement element in gitList)
+            {
+                gitListElement.Add(element);
+            }
         }
 
         private void SaveUser(XElement root)
@@ -192,5 +228,10 @@ namespace Cvte.GitRain.Configs
             }
             return lastElement;
         }
+    }
+
+    public class GitExecutables
+    {
+        public string Msysgit { get; set; }
     }
 }
