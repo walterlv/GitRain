@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -9,14 +10,14 @@ namespace Cvte.GitRain
 {
     public static class CommandExecutor
     {
-        public static event DataReceivedEventHandler ConsoleOutput;
+        public static event EventHandler<DataEventArgs> ConsoleOutput;
 
-        private static void RaiseConsoleOutput(DataReceivedEventArgs e)
+        private static void RaiseConsoleOutput(string data)
         {
             Action action = () =>
             {
                 var handler = ConsoleOutput;
-                if (handler != null) handler(null, e);
+                if (handler != null) handler(null, new DataEventArgs(data));
             };
             if (Dispatcher.CurrentDispatcher == Application.Current.Dispatcher)
             {
@@ -28,11 +29,6 @@ namespace Cvte.GitRain
             }
         }
 
-        public static CommandResult Start(string command, params string[] arguments)
-        {
-            return Start(command, null, arguments);
-        }
-
         public static CommandResult Start(string command, string workingDirectory, params string[] arguments)
         {
             CommandResult result = new CommandResult();
@@ -42,9 +38,11 @@ namespace Cvte.GitRain
                 {
                     FileName = command,
                     UseShellExecute = false,
+                    ErrorDialog = false,
+                    RedirectStandardError = true,
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
-                    CreateNoWindow = true,
+                    //CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden,
                 }
             })
@@ -63,22 +61,24 @@ namespace Cvte.GitRain
                     cmd.StartInfo.Arguments = parameter;
                 }
 
-                StringBuilder output = new StringBuilder();
-                cmd.OutputDataReceived += (sender, args) =>
-                {
-                    if (args.Data == null)
-                    {
-                        return;
-                    }
-                    Debug.WriteLine(args.Data);
-                    RaiseConsoleOutput(args);
-                    output.Append(args.Data);
-                };
+                //StringBuilder output = new StringBuilder();
+                //cmd.OutputDataReceived += (sender, args) =>
+                //{
+                //    if (args.Data == null)
+                //    {
+                //        return;
+                //    }
+                //    Debug.WriteLine(args.Data);
+                //    RaiseConsoleOutput(args.Data);
+                //    output.Append(args.Data);
+                //};
                 cmd.Start();
-                cmd.BeginOutputReadLine();
+                StreamWriter inputWriter = cmd.StandardInput;
+                inputWriter.Flush();
+                //cmd.BeginOutputReadLine();
                 cmd.WaitForExit();
                 result.Code = cmd.ExitCode;
-                result.OutputText = output.ToString();
+                //result.OutputText = output.ToString();
             }
             return result;
         }

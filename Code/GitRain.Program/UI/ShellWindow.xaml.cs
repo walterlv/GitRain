@@ -63,5 +63,11 @@ namespace Cvte.GitRain.UI
             MessageFrame.Content = new MessageControl {DataContext = content};
             IsMessageDisplaying = true;
         }
+
+        public void Show(object content)
+        {
+            MessageFrame.Content = content;
+            IsMessageDisplaying = true;
+        }
     }
 }

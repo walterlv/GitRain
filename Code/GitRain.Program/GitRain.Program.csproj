@@ -61,6 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="Cmd\CommandExecutor.cs" />
     <Compile Include="Cmd\CommandResult.cs" />
+    <Compile Include="Cmd\DataEventArgs.cs" />
     <Compile Include="Core\ResultLevel.cs" />
     <Compile Include="Core\ActionCommand.cs" />
     <Compile Include="Core\GlobalCommand.cs" />
@@ -79,6 +80,9 @@
     <Compile Include="Git\GitHelper.cs" />
     <Compile Include="Git\GitOperator.cs" />
     <Compile Include="Services\MessageService.cs" />
+    <Compile Include="UI\ConsoleControl.xaml.cs">
+      <DependentUpon>ConsoleControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\CreateOrCloneRepoPage.xaml.cs">
       <DependentUpon>CreateOrCloneRepoPage.xaml</DependentUpon>
     </Compile>
@@ -160,6 +164,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Unique.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ConsoleControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

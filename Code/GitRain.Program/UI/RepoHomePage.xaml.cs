@@ -16,7 +16,7 @@ namespace Cvte.GitRain.UI
             CommandExecutor.ConsoleOutput += OnConsoleOutput;
         }
 
-        private void OnConsoleOutput(object sender, DataReceivedEventArgs e)
+        private void OnConsoleOutput(object sender, DataEventArgs e)
         {
             ConsoleTextBox.AppendText(e.Data);
         }

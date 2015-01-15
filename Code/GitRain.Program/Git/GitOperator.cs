@@ -14,20 +14,21 @@ namespace Cvte.GitRain.Git
             MessageBox.Show("假装正在同步……");
         }
 
-        public static void CreateRepo(string url, string localDirectory)
+        public async static void CreateRepo(string url, string localDirectory)
         {
             GitCommandExecutor git = new GitCommandExecutor(new DirectoryInfo(localDirectory).FullName);
-            git.Init();
+            await git.InitAsync();
             if (!String.IsNullOrEmpty(url))
             {
-                git.AddRemote("origin", url);
+                await git.AddRemoteAsync("origin", url);
             }
         }
 
-        public static void CloneRepo(string url, string localDirectory)
+        public static async void CloneRepo(string url, string localDirectory)
         {
             GitCommandExecutor git = new GitCommandExecutor(new DirectoryInfo(localDirectory).FullName);
-            git.Clone(url, localDirectory);
+            CommandResult result = await git.CloneAsync(url, localDirectory);
+            MessageBox.Show(result.OutputText);
         }
     }
 }

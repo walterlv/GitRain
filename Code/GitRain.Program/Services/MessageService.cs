@@ -16,11 +16,17 @@ namespace Cvte.GitRain
         {
             MessageBox.Show(Application.Current.MainWindow, content.Content, content.Title);
         }
+
+        public void Show(object content)
+        {
+            MessageBox.Show(Application.Current.MainWindow, content.ToString());
+        }
     }
 
     public interface IMessageService
     {
         void Show(MessageContent content);
+        void Show(object content);
     }
 
     public class MessageContent

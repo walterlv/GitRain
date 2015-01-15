@@ -1,5 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Cvte.GitRain.Configs;
+using Cvte.GitRain.UI;
 
 namespace Cvte.GitRain.Git
 {
@@ -18,32 +22,49 @@ namespace Cvte.GitRain.Git
 
         private CommandResult Execute(params string[] arguments)
         {
-            return CommandExecutor.Start(UserConfig.Instance.Executable.Msysgit, _directory.FullName, arguments);
+            return CommandExecutor.Start(UserConfig.Instance.Executable.Msysgit,
+                _directory.FullName, arguments);
         }
 
-        public CommandResult Init()
+        private async Task<CommandResult> ExecuteAsync(params string[] arguments)
         {
-            return Execute("init");
+            MessageService.Current.Show(new ConsoleControl
+            {
+                ConsoleText = arguments.Aggregate("git", (sum, add) => sum + " " + add)
+            });
+            Task<CommandResult> task = new Task<CommandResult>(() => Execute(arguments));
+            task.Start();
+            CommandResult result = await task;
+            MessageService.Current.Show(new ConsoleControl
+            {
+                ConsoleText = String.IsNullOrEmpty(result.OutputText) ? "Exit" : result.OutputText
+            });
+            return result;
         }
 
-        public CommandResult AddRemote(string name, string url)
+        public async Task<CommandResult> InitAsync()
         {
-            return Execute("remote", "add", name, url);
+            return await ExecuteAsync("init");
         }
 
-        public CommandResult Commit(string message)
+        public async Task<CommandResult> AddRemoteAsync(string name, string url)
         {
-            return Execute("commit", "-m", message);
+            return await ExecuteAsync("remote", "add", name, url);
         }
 
-        public CommandResult Push(string remoteName, string branchName)
+        public async Task<CommandResult> CommitAsync(string message)
         {
-            return Execute("push", "-u", remoteName, branchName);
+            return await ExecuteAsync("commit", "-m", message);
         }
 
-        public CommandResult Clone(string url, string dir)
+        public async Task<CommandResult> PushAsync(string remoteName, string branchName)
         {
-            return Execute("clone", url, dir);
+            return await ExecuteAsync("push", "-u", remoteName, branchName);
+        }
+
+        public async Task<CommandResult> CloneAsync(string url, string dir)
+        {
+            return await ExecuteAsync("clone", url, dir);
         }
     }
 }

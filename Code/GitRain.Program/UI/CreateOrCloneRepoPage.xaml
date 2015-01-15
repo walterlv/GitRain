@@ -66,12 +66,12 @@
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="源路径 / URL:"/>
             <TextBox x:Name="UrlTextBox" Grid.Row="0" Grid.Column="1"
-                     TextChanged="OnAnyTextChanged"/>
+                     TextChanged="OnAnyTextChanged" Text="http://x.gz.cvte.cn/iip-win/cvte-core.git"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="本地路径:"/>
             <TextBox x:Name="LocalPathTextBox" Grid.Row="1" Grid.Column="1"
-                     TextChanged="OnAnyTextChanged"/>
+                     TextChanged="OnAnyTextChanged" Text="C:\Users\lvyi\Desktop\GitRain"/>
             <TextBlock Grid.Row="2" Grid.Column="0" Text="仓库名字:"/>
-            <TextBox x:Name="AliasTextBox" Grid.Row="2" Grid.Column="1"/>
+            <TextBox x:Name="AliasTextBox" Grid.Row="2" Grid.Column="1" Text="Test"/>
             <TextBlock x:Name="CloneTipTextBlock" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                        TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis"
                        HorizontalAlignment="Center" FontSize="24" FontWeight="Thin"
